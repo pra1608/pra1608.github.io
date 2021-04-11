@@ -4,16 +4,16 @@
 
 ### Category Name 1 
 
-[Project 1 Title](/sample_page)
+[Detroit Blight Ticket Compilance](/sample_page)
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Project 2 Title](/pdf/sample_presentation.pdf)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Eigen Value Analysis of 2D-Structure With ROM System](/pdf/sample_presentation.pdf)
+<img src="images/Error_plot.jpg?raw=true"/>
 
 ---
-[Project 3 Title](http://example.com/)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[FEM analysis of 2D structure using Abaqus and MATLAB](https://github.com/pra1608/Finite-Element-Methods)
+<img src="images/stresscontour.png?raw=true"/>
 
 ---
 
