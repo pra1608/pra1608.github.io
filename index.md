@@ -2,7 +2,7 @@
 
 ---
 
-### Category Name 1 
+### Course Projects 
 
 [Understanding and Predicting Property Maintenance Fines](https://github.com/pra1608/Applied-Machine-Learning-coursera-specialization/blob/master/Assignment%2B4.ipynb)
 ---
