@@ -4,8 +4,9 @@
 
 ### Category Name 1 
 
-[Detroit Blight Ticket Compilance](/sample_page)
-<img src="images/dummy_thumbnail.jpg?raw=true"/>
+[Understanding and Predicting Property Maintenance Fines](https://github.com/pra1608/Applied-Machine-Learning-coursera-specialization/blob/master/Assignment%2B4.ipynb)
+[Blight Violation Notices (BVN), or Blight Tickets, that have been issued to property owners who have violated City of Detroit ordinances that govern how property owners must maintain the exterior of their property. Blight Tickets are issued by city inspectors, police officers, neighborhood city hall managers and other city officials who investigate complaints of blight and are managed by the Department of Administrative Hearings. Blight tickets that are issued may be subsequently voided by the ticket writing department for various reasons.]
+<img src="images/payment_status.PNG?raw=true"/>
 
 ---
 [Eigen Value Analysis of 2D-Structure With ROM System](/pdf/193109012_report.pdf)
