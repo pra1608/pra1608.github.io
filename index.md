@@ -8,7 +8,7 @@
 <img src="images/dummy_thumbnail.jpg?raw=true"/>
 
 ---
-[Eigen Value Analysis of 2D-Structure With ROM System](/pdf/sample_presentation.pdf)
+[Eigen Value Analysis of 2D-Structure With ROM System](/pdf/193109012_report.pdf)
 <img src="images/Error_plot.jpg?raw=true"/>
 
 ---
