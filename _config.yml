@@ -6,8 +6,13 @@ description: > # your text below (remove <br> elements if you don't need line br
   M.Tech (Manufacturing Engg) 
   <br><br>
   <a href="https://www.linkedin.com/in/prakhar-jain-842423119/">View My LinkedIn Profile</a> 
+  <br><br>
 logo: "/images/prakharjaink_nametag.png?raw=true" # your photo (or logo) here
-<a href="https://www.instagram.com/prakharjaink/">View My Instagram Profile</a> 
+description: >
+  <br><br>
+  <a href="https://www.instagram.com/prakharjaink/">View My Instagram Profile</a> 
+  <br><br>
+
 
   
 theme: jekyll-theme-minimal
