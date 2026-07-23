@@ -1,379 +1,534 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
-
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prakhar Jain — Valuation Advisory, PwC India</title>
+<meta name="description" content="Prakhar Jain — Assistant Manager, Valuation Advisory (Deals) at PwC India. IIT Bombay M.Tech. DCF, comparables, and cross-border valuation work.">
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Portfolio</title>
-	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  :root{
+    --ink:#0F2436;
+    --ink-2:#16324A;
+    --ink-3:#1D3D59;
+    --paper:#F1EEE4;
+    --brass:#C9A24B;
+    --brass-dim:#8f7439;
+    --teal:#4C8C86;
+    --muted:#9FB2C2;
+    --line: rgba(201,162,75,0.35);
+    --maxw: 1120px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{ background:var(--brass); color:var(--ink); }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img{ max-width:100%; display:block; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    color:var(--brass);
+  }
+
+  h1,h2,h3,h4{ font-family:'Fraunces', serif; font-weight:600; letter-spacing:-0.01em; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 1.75rem; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(15,36,54,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 1.75rem;
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+  }
+  .brand span{ color:var(--brass); }
+  nav#menu{ display:flex; gap:2rem; }
+  nav#menu a{
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem;
+    letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); position:relative; padding:.25rem 0;
+    transition:color .25s ease;
+  }
+  nav#menu a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:1px; width:0;
+    background:var(--brass); transition:width .25s ease;
+  }
+  nav#menu a:hover{ color:var(--paper); }
+  nav#menu a:hover::after{ width:100%; }
+
+  #mobile-toggle{
+    display:none; background:none; border:1px solid var(--line); color:var(--paper);
+    width:40px; height:40px; border-radius:6px; cursor:pointer; font-size:1rem;
+  }
+
+  @media (max-width: 800px){
+    nav#menu{
+      position:fixed; top:64px; left:0; right:0; bottom:0;
+      background:var(--ink); flex-direction:column; gap:0;
+      padding:1.5rem 1.75rem; transform:translateY(-110%);
+      transition:transform .35s ease; border-top:1px solid var(--line);
+    }
+    nav#menu.open{ transform:translateY(0); }
+    nav#menu a{ padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,.06); }
+    #mobile-toggle{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  #hero{
+    min-height:100svh; display:flex; flex-direction:column; justify-content:center;
+    padding:7rem 0 4rem; position:relative;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(201,162,75,0.10), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, rgba(76,140,134,0.12), transparent 60%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1fr; gap:2.5rem;
+  }
+  .hero-name{
+    font-size:clamp(2.6rem, 7vw, 5rem); line-height:1.02; margin:.6rem 0 .9rem;
+  }
+  .hero-role{
+    font-family:'IBM Plex Mono', monospace; font-size:clamp(.95rem,1.6vw,1.15rem);
+    color:var(--teal); margin-bottom:1.4rem;
+  }
+  .hero-desc{ max-width:640px; color:var(--muted); font-size:1.05rem; }
+  .hero-ctas{ display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:.82rem; letter-spacing:.04em;
+    padding:.85rem 1.4rem; border-radius:2px; text-transform:uppercase;
+    border:1px solid var(--brass); transition:all .25s ease;
+  }
+  .btn.solid{ background:var(--brass); color:var(--ink); }
+  .btn.solid:hover{ background:transparent; color:var(--brass); }
+  .btn.ghost{ color:var(--paper); border-color:var(--line); }
+  .btn.ghost:hover{ border-color:var(--brass); color:var(--brass); }
+
+  /* Ledger ticker — signature element */
+  .ledger{
+    margin-top:3.2rem; border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:repeat(3, 1fr);
+  }
+  @media (max-width:700px){ .ledger{ grid-template-columns:repeat(2,1fr);} }
+  .ledger-item{
+    padding:1.1rem 1.2rem; border-right:1px solid var(--line);
+  }
+  .ledger-item:nth-child(3n){ border-right:none; }
+  @media (max-width:700px){ .ledger-item:nth-child(2n){ border-right:none; } }
+  .ledger-num{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:1.5rem; color:var(--brass);
+  }
+  .ledger-label{ font-size:.76rem; color:var(--muted); margin-top:.2rem; }
+
+  /* ---------- Sections ---------- */
+  section{ padding:6rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .section-head{
+    display:flex; align-items:baseline; gap:1rem; margin-bottom:2.6rem;
+  }
+  .section-head .idx{
+    font-family:'IBM Plex Mono', monospace; color:var(--brass-dim); font-size:.85rem;
+  }
+  .section-head h2{ font-size:clamp(1.7rem,3vw,2.3rem); }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* About */
+  #about .about-grid{ display:grid; grid-template-columns: 0.9fr 1.6fr; gap:3rem; }
+  @media (max-width:800px){ #about .about-grid{ grid-template-columns:1fr; } }
+  .about-fact{ margin-bottom:1.1rem; }
+  .about-fact .k{ font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--brass); text-transform:uppercase; letter-spacing:.08em; }
+  .about-fact .v{ color:var(--paper); font-size:.98rem; }
+  #about p{ color:var(--muted); margin-bottom:1.1rem; }
+  #about p strong{ color:var(--paper); font-weight:600; }
+
+  /* Experience timeline */
+  .timeline{ position:relative; padding-left:2.2rem; }
+  .timeline::before{
+    content:''; position:absolute; left:0; top:.4rem; bottom:.4rem; width:1px;
+    background:linear-gradient(var(--brass), transparent 95%);
+  }
+  .tl-item{ position:relative; padding-bottom:3rem; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-2.2rem; top:.35rem;
+    width:9px; height:9px; border-radius:50%; background:var(--brass);
+    box-shadow:0 0 0 4px rgba(201,162,75,0.15);
+  }
+  .tl-date{ font-family:'IBM Plex Mono', monospace; font-size:.78rem; color:var(--teal); margin-bottom:.4rem; display:block; }
+  .tl-item h3{ font-size:1.35rem; }
+  .tl-item .role{ color:var(--brass); font-size:.95rem; margin:.15rem 0 .9rem; font-weight:500; font-family:'IBM Plex Sans',sans-serif;}
+  .tl-item ul{ color:var(--muted); }
+  .tl-item li{ position:relative; padding-left:1.1rem; margin-bottom:.55rem; font-size:.96rem; }
+  .tl-item li::before{ content:'—'; position:absolute; left:0; color:var(--brass-dim); }
+
+  /* Projects grid */
+  .grid-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
+  @media (max-width:800px){ .grid-cards{ grid-template-columns:1fr; } }
+  .card{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:4px;
+    padding:1.6rem 1.7rem; transition:transform .3s ease, border-color .3s ease;
+  }
+  .card:hover{ transform:translateY(-4px); border-color:var(--brass); }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:.6rem;}
+  .card h3{ font-size:1.12rem; line-height:1.3; }
+  .tag{
+    flex-shrink:0; font-family:'IBM Plex Mono', monospace; font-size:.72rem;
+    color:var(--ink); background:var(--brass); padding:.25rem .55rem; border-radius:2px; white-space:nowrap;
+  }
+  .card .meta{ font-family:'IBM Plex Mono', monospace; font-size:.74rem; color:var(--teal); margin-bottom:.7rem; display:block; }
+  .card p{ color:var(--muted); font-size:.93rem; }
+
+  /* Skills */
+  .skill-cats{ display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; }
+  @media (max-width:800px){ .skill-cats{ grid-template-columns:1fr; } }
+  .skill-cat h4{
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--brass); margin-bottom:1rem; font-weight:500;
+  }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:.55rem; }
+  .chip{
+    font-size:.86rem; padding:.4rem .8rem; border:1px solid var(--line); border-radius:20px;
+    color:var(--paper); transition:border-color .2s ease, color .2s ease;
+  }
+  .chip:hover{ border-color:var(--brass); color:var(--brass); }
+
+  /* Certifications & Achievements */
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; }
+  @media (max-width:800px){ .two-col{ grid-template-columns:1fr; } }
+  .list-block h4{
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem; text-transform:uppercase;
+    color:var(--brass); margin-bottom:1rem; letter-spacing:.06em; font-weight:500;
+  }
+  .list-block li{
+    padding:.85rem 0; border-bottom:1px solid rgba(255,255,255,0.07);
+    display:flex; gap:.8rem; color:var(--muted); font-size:.95rem;
+  }
+  .list-block li i{ color:var(--brass); margin-top:.2rem; }
+  .list-block li span{ color:var(--paper); }
+
+  /* Contact */
+  #contact{ border-bottom:none; }
+  .contact-inner{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:2.5rem; }
+  .contact-links{ display:flex; flex-direction:column; gap:.7rem; }
+  .contact-links a{ font-family:'IBM Plex Mono', monospace; font-size:1rem; }
+  .contact-links a:hover{ color:var(--brass); }
+  .social-row{ display:flex; gap:1.1rem; }
+  .social-row a{
+    width:42px; height:42px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+    transition:all .25s ease;
+  }
+  .social-row a:hover{ border-color:var(--brass); color:var(--brass); transform:translateY(-3px); }
+
+  footer{ padding:2rem 0 3rem; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+  footer p{ color:var(--muted); font-size:.82rem; font-family:'IBM Plex Mono', monospace; }
+  #to-top{ cursor:pointer; color:var(--muted); }
+  #to-top:hover{ color:var(--brass); }
+
+  :focus-visible{ outline:2px solid var(--brass); outline-offset:3px; border-radius:2px; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .card, .btn, nav#menu a::after, .social-row a{ transition:none; }
+  }
+</style>
 </head>
-
 <body>
-    <div id="mobile-menu-open" class="shadow-large">
-        <i class="fa fa-bars" aria-hidden="true"></i>
+
+<header>
+  <div class="nav-inner">
+    <a href="#hero" class="brand">P<span>·</span>Jain</a>
+    <nav id="menu">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button id="mobile-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Valuation Advisory — Deals · PwC India</p>
+        <h1 class="hero-name">Prakhar Jain</h1>
+        <p class="hero-role">Assistant Manager, Deals (Valuations) — Bangalore, India</p>
+        <p class="hero-desc">I turn engineering rigor into deal-ready numbers — DCF, comparable company &amp; transaction analysis, and cross-border compliance valuations across aerospace, clean energy, sport, and private equity portfolios.</p>
+        <div class="hero-ctas">
+          <a href="resume.pdf" download class="btn solid">Download Résumé</a>
+          <a href="https://in.linkedin.com/in/prakhar-jain-842423119" target="_blank" class="btn ghost">LinkedIn Profile</a>
+        </div>
+      </div>
+
+      <div class="ledger" id="ledger">
+        <div class="ledger-item"><div class="ledger-num" data-target="4">₹0Bn</div><div class="ledger-label">Cricket franchise acquisition</div></div>
+        <div class="ledger-item"><div class="ledger-num" data-target="15">₹0Bn</div><div class="ledger-label">CX Partners portfolio, 9 sectors</div></div>
+        <div class="ledger-item"><div class="ledger-num" data-target="6">₹0Bn</div><div class="ledger-label">Metal casting acquisition</div></div>
+        <div class="ledger-item"><div class="ledger-num" data-target="5">₹0Bn</div><div class="ledger-label">FEMA equity infusion</div></div>
+        <div class="ledger-item"><div class="ledger-num" data-target="9.06" data-decimal="true">0.00</div><div class="ledger-label">M.Tech CGPA, IIT Bombay</div></div>
+        <div class="ledger-item"><div class="ledger-num" data-target="99" data-suffix="th %ile">0th %ile</div><div class="ledger-label">GATE 2019</div></div>
+      </div>
     </div>
-    <!-- End #mobile-menu-toggle -->
-    <header>
-        <div id="mobile-menu-close">
-            <span>Close</span> <i class="fa fa-times" aria-hidden="true"></i>
-        </div>
-        <ul id="menu" class="shadow">
-            <li>
-                <a href="#about">About</a>
-            </li>
-            <li>
-                <a href="#experience">Experience</a>
-            </li>
-            <li>
-                <a href="#education">Education</a>
-            </li>
-            <li>
-                <a href="#projects">Projects</a>
-            </li>
-            <li>
-                <a href="#skills">Skills</a>
-            </li>
-            <li>
-                <a href="#contact">Contact</a>
-            </li>
-        </ul>
-    </header>
-    <!-- End header -->
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div id="lead">
-        <div id="lead-content">
-            <h1>Prakhar Jain</h1>
-            <h2>Deals (Valuations) at PwC India | IIT Bombay</h2>
-		
-            <a href="https://github.com/pra1608/pra1608.github.io/blob/main/Prakhar%2BJain%2BResumeC.pdf" download="resume.pdf" class="btn-rounded-white">Download Resume</a>
-        </div>
-              
-        <!-- End #lead-content -->
+  </div>
+</section>
 
-        <div id="lead-overlay"></div>
-
-        <div id="lead-down">
-            <span>
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-            </span>
-        </div>
-        <!-- End #lead-down -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">01</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="reveal">
+        <div class="about-fact"><div class="k">Based in</div><div class="v">Bangalore, India</div></div>
+        <div class="about-fact"><div class="k">Role</div><div class="v">Assistant Manager, Valuation Advisory (Deals)</div></div>
+        <div class="about-fact"><div class="k">Education</div><div class="v">M.Tech, Mechanical Engineering — IIT Bombay</div></div>
+        <div class="about-fact"><div class="k">Clients</div><div class="v">TRG · Hughes Communications · GMR Group · JSW GMR Sports · CX Fund · Amansa Capital · EIH Limited</div></div>
+      </div>
+      <div class="reveal">
+        <p>Prakhar holds a postgraduate degree in <strong>Manufacturing Engineering from IIT Bombay</strong>, specializing in additive manufacturing — his thesis modeled the physics behind laser Directed Energy Deposition, a process used to restore high-value molds, dies, and aerospace components.</p>
+        <p>He now works as a <strong>Deals professional at PwC</strong>, running end-to-end valuations — DCF, comparable company and transaction analysis — for clients spanning airports, satellite services, clean-tech, automotive, battery manufacturing, and sports franchises.</p>
+        <p>His work includes <strong>portfolio valuations for private equity and venture capital funds</strong>, mentoring analyst teams on market-based valuation methodology, supporting PwC's internal Strategy team, and reviewing valuations for audit clients — pairing an engineer's precision with a dealmaker's judgment.</p>
+      </div>
     </div>
-    <!-- End #lead -->
+  </div>
+</section>
 
-    <div id="about">
-              
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h2 class="heading">About Me</h2>
-		    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="prakhar-jain-842423119" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://in.linkedin.com/in/prakhar-jain-842423119?trk=profile-badge">Prakhar Jain</a></div>
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">02</span><h2>Experience</h2></div>
+    <div class="timeline">
 
-                </div>
-                <div class="col-md-8">
-
-                    <p>
-			    Prakhar Jain, holds a Postgraduate degree in Manufacturing Engineering from the prestigious Indian Institute of Technology Bombay and specializes in Additive Manufacturing. His expertise revolves around the advanced Numerical Modeling of the Laser Directed Energy Deposition Process, a state-of-the-art technique predominantly used for revitalizing high-value molds, dies, and aerospace components.
-Currently serving as a Deals Professional at PwC, Prakhar brings a wealth of experience to the forefront. With an academic foundation in Mechanical Engineering from IIT Bombay, he has adeptly navigated the dynamic landscape of business valuation and strategic decision-making. Prakhar's contributions extend across diverse sectors, including hospitality, sports franchises, educational technology startups, e-waste and lithium battery recycling ventures, renewable energy initiatives, and clean technology startups focusing on Carbon Capture, Utilization, and Storage (CCUS) and Biochar.
-
-His achievements encompass conducting portfolio valuations for private equity/venture capital funds, mentoring analyst teams on market-based valuation methodologies, and providing strategic support to the PwC Strategy team. Prakhar has played a crucial role in the valuation review process for audit clients, showcasing his multifaceted skill set. His clientele boasts esteemed organizations such as TRG, Hughes Communications, GMR Group, JSW GMR Sports, CX Fund, Amansa Capital, and EIH Limited. Prakhar's passion for solving critical and strategic problems has seamlessly integrated into the consulting realm, making him a valuable asset to the PwC India team.
-
-ChatGPT
-
-                    </p>
-			
-                </div>
-		
-            </div>
-        </div>
-    </div>
-    <!-- End #about -->
-
-    <div id="experience" class="background-alt">
-        <h2 class="heading">Experience</h2>
-        <div id="experience-timeline">
-            <div data-date="September 2022 – Present">
-                <h3>PwC India</h3>
-                <h4>Deals-Valuation</h4>
-                <p>
-		    <ul>
-			<li>Provided Business Valuation Services for Regulatory Compliance and internal decision-making process for sectors such as hospitality, sports franchises, educational technology startups, e-waste and lithium battery recycling ventures, renewable energy initiatives, and clean technology startups specializing in CCUS and Biochar.</li>
-		    
-		    
-			 <li>Contributed expertise to projects in the airport and power sectors, showcasing versatility in industry involvement.</li>
-
-		    
-		    
-			<li>Extensive experience in conducting portfolio valuations for private equity/venture capital funds with diverse investments.</li>
-		    
-		    
-			    <li>Mentored analyst teams on market-based valuation methodologies, fostering skill development and knowledge transfer.</li>
-
-		    
-		    
-			    <li>Currently providing strategic support to the PwC Strategy team on a specific project, demonstrating ongoing commitment to high-impact initiatives.</li>
-
-		    
-			   <li>Involved in the valuation review process for an audit client, ensuring accuracy and compliance with industry standards.</li>
-
-		    </ul>
-                     
-                </p>
-            </div>
-
-            <div data-date="July 2019 – Jun 2022">
-                <h3>Indian Institute of Technology Bombay</h3>
-                <h4>Research Assistant</h4>
-                <p>
-                    Facility in-charge with responsibility of Operation, maintainace and monitoring of the equipments of Machine Tools Lab
-			
-			<ul>
-			  <li>Alicona</li>
-			  <li>Zeta</li>
-			  <li>CMM</li>
-			  <li>KUKA-Robot</li>
-			  <li>Wire EDM</li>
-			</ul>  
-			
-                </p>
-		<h4>Teaching Assistant | Machine Tool Lab | IIT Bombay</h4>
-                <p>
-			<i>ME 374-Machining Process Lab | ME 372-Metrology Lab | ME 643-Materials Processing and Simulation Lab</i>
-         		<ul>
-			  <li>Managed a team of 20 TAs throughout 4 semesters to conduct lab sessions, report evaluation and viva of UG students</li>
-			  <li>Conducted experiments on Machine Alignment Test and Inspection of Screw Thread for UG students</li>
-
-			</ul>  
-                </p>    
-            </div>
-
-        </div>
-    </div>
-    <!-- End #experience -->
-
-    <div id="education">
-        <h2 class="heading">Education</h2>
-        <div class="education-block">
-            <h3>Indian Institute of Technology Bombay</h3>
-            <span class="education-date">July 2019 - Jun 2022</span>
-            <h4>Master of Technology (Spl. Manufacturing Engineering)</h4>
-            <p>
-		    Completed Master of Technology in Mechanical Engineering with specialization in Manufacturing Engineering with 9.06 CPI. I have been part of H-14 Hostel council from Jul-2019 to Apr-2021
-                    I have done the courses in Advance Manufacturing Engineering, Laser Material Processing, and computation structural dynamics during my course work in M.tech
-		</p>
-        </div>
-        <!-- End .education-block -->
-        <!-- End .education-block -->
-        	
-    </div>
-    <!-- End #education -->
-
-    <div id="projects" class="background-alt">
-        <h2 class="heading">Projects</h2>
-        <div class="container">
-            <div class="row">
-		    <div class="project no-image">
-                    <!-- End .project-image -->
-	<head>
-	<style>
-	table, th, td {
-	border: 1px solid black;
-	border-collapse: collapse;
-	}
-
-	tr:nth-child(even) {
-	background-color: rgba(150, 212, 212, 0.4);
-	}
-
-	th:nth-child(even),td:nth-child(even) {
-	background-color: rgba(150, 212, 212, 0.4);
-	}
-	</style>
-	</head>
-                    <div class="project-info">
-                        <h3>Numerical Modeling of Laser Directed Energy Deposition</h3>
-			 <h4><i>M.Tech Thesis| Advisor: Prof. Ramesh Singh | IIT Bombay</i></h4>
-
-			<table style="width:100%">
-			  <tr>
-			    <th>Aim</th>
-			    <th>○ Modeling physical phenomena underlying laser DED process to determine quality and integrity of deposition</th>
-			  </tr>
-			  <tr>
-			    <td>Objective</td>
-			    <td> 
-				    <ul>
-				    	<li>Development of a fully coupled metallurgical and thermomechanical 3-D finite element model for predicting 
-				    	residual stresses and dilution in multilayer and multi-track laser DED Process</li>
-				    	<li>Developing an integrated simulation approach for incorporating melt-pool dynamics and metallothermomechanical behavior</li>
-				    </ul>
-			    </td>
-
-			  </tr>
-			  <tr>
-			    <td>Work completed</td>
-			    <td> 
-				    <ul>
-					    <li>Modeled laser-powder flow interaction via Discrete phase modeling in Fluent</li>
-					    <li>Modeled Melting & solidification phenomena during laser DED in Fluent</li>
-					    <li>Modeled laser moving heat source and multi-layer powder deposition process via DFLUX subroutine in conjunction with Element birth technique in ABAQUS</li>
-					    <li>Implemented USDFLD and UEXPAN subroutines to identify phase transformation and thermal history</li>
-                                            <li>Implemented UMAT Subroutine to calculate the deformation and residual stresses</li>
-                                            <li>Analyzed effect of Various deposition strategies and Interpass cooling time on Residual stress development</li>
-				    </ul>
-			    </td>
-			  </tr>
-			  <tr>
-			    <th>Impact</th>
-			    <th>Process parameter space for depositions with favorable attributes, such as compressive residual stresses, sound metallurgical bonding, and acute contact angles of deposition</th>
-			  </tr>
-			  <tr>			
-			</table>
-                        <a href="#">View Project</a>
-                    </div>
-                    <!-- End .project-info -->
-                </div>
-                <!-- End .project -->
-		<a id="view-more-projects" href="#">View More Projects</a>
-		<div id="more-projects" class="row">
-			<div class="project no-image">
-			<!-- End .project-image -->
-			<div class="project-info">
-			    <h3>Eigen value analysis of 2D structure with reduced degree of freedom system</h3>
-			    <h4><i>Computational Structural Dynamics | Advisor: Salil Kulkarni | IIT Bombay<\i></h4>
-			    <span class="education-date">July 2016- May 2018</span>
-		        <table border="1" bgcolor="#c2f2f2" style="width:100%">
-			  <tr>
-			    <th><ul>
-				<li>Implemented a technique to reduce model size generated by the Craig–Bampton method of component mode synthesis (CMS) using OCTAVE software</li>
-				<li>Obtained CMS model with a highly reduced degree of freedom by truncating CC modesr</li>
-				<li>○ Achieved 99.967% accurate approximations of the lower natural frequencies in ROM model</li>
-			    </ul>
-			    </th>
-			  </tr>
-		        </table>
-		    <a href="#">View Project</a>
-			</div>
-			<!-- End .project-info -->
-		    </div>
-				
-		    <!-- End .project -->
-			<div class="project no-image">
-			<!-- End .project-image -->
-			<div class="project-info">
-			    <h3> Finite element analysis of 1D & 2D elastic problems using MATLAB and ABAQUS</h3>
-		        <table border="1" bgcolor="#c2f2f2" style="width:100%">
-			  <tr>
-			    <th><ul>
-				<li>Developed a MATLAB code for finite element analysis of general 1D and 2D linear elastic problems</li>
-				<li>Implemented this code to 3 noded 1D bar elements and 4 noded 2D quadrilateral elements for stress analysis</li>
-				<li>Verified MATLAB results with ABAQUS software and achieved the approximate results</li>
-			    </ul>
-			    </th>
-			  </tr>
-		        </table>
-			    <a href="#">View Project</a>
-			</div>
-			<!-- End .project-info -->
-		    </div>		
-		</div>
-    <!-- End #projects -->
-
-    <div id="skills">
-        <h2 class="heading">Skills</h2>
+      <div class="tl-item reveal">
+        <span class="tl-date">Jul 2022 — Present · Bangalore, India</span>
+        <h3>PwC India</h3>
+        <div class="role">Assistant Manager — Valuation Advisory (Deals)</div>
         <ul>
-            <li>Python</li>
-            <li>Abaqus</li>
-            <li>HyperMesh</li>
-            <li>Ansys Fluent</li>
-            <li>HTML</li>
-            <li>MATLAB</li>
-            <li>Deep Learning</li>
-            <li>Machine Learning</li>
-            <li>Tensorflow</li>
-            <li>Project Management</li>
-            <li>Postgresql</li>
-            <li>NumPy</li>
-            <li>SciPy</li>
-            <li>SymPy</li>
-            <li>Pandas</li>
+          <li><span style="color:var(--paper)">Valuation modeling for diverse industries:</span> end-to-end valuations across airports, satellite services, clean-tech, automotive, battery manufacturing, and sports franchises to support M&amp;A and strategic decisions.</li>
+          <li><span style="color:var(--paper)">DCF &amp; comparable company analysis:</span> executed DCF, comparable company/transaction, and PORI-based valuations; contributed to board presentations and investor reporting.</li>
+          <li><span style="color:var(--paper)">Financial data platforms:</span> CapIQ, Bloomberg, Mergermarket, and VCC Edge for market data and benchmarking.</li>
+          <li>Supervises and mentors junior team members, reviews valuation models, and manages internal workflow to meet client expectations and PwC quality standards.</li>
+          <li>Provides strategic support to PwC's internal Strategy team, and contributes to the valuation review process for audit clients.</li>
         </ul>
+      </div>
+
+      <div class="tl-item reveal">
+        <span class="tl-date">Jul 2019 — Jun 2022 · Mumbai, India</span>
+        <h3>IIT Bombay</h3>
+        <div class="role">Research Assistant, Machine Tools Lab</div>
+        <ul>
+          <li>Facility in-charge for operation, maintenance, and monitoring of lab equipment — Alicona, Zeta, CMM, KUKA robot, and Wire EDM.</li>
+          <li>Analyzed experimental data using quantitative techniques and prepared reports for engineering process optimization.</li>
+        </ul>
+        <div class="role" style="margin-top:1.4rem;">Teaching Assistant — Machine Tool Lab</div>
+        <ul>
+          <li>Managed a team of 20 TAs across 4 semesters for lab sessions, report evaluation, and viva of undergraduate students (ME 374, ME 372, ME 643).</li>
+          <li>Conducted experiments on machine alignment testing and screw-thread inspection for undergraduate students.</li>
+        </ul>
+      </div>
+
     </div>
-    <!-- End #skills -->
+  </div>
+</section>
 
-    <div id="contact">
-        <h2>Get in Touch</h2>
-        <div id="contact-form">
-		<form
-		  action="https://formspree.io/f/xeqnyjrp"
-		  method="POST"
-		>
-		  <label>
-		    Your email:
-		    <input type="email" name="email">
-		  </label>
-		  <label>
-		    Your message:
-		    <textarea name="message"></textarea>
-		  </label>
-		  <!-- your other form fields go here -->
-		  <button type="submit">Send</button>
-		</form>
-        </div>
-        <!-- End #contact-form -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">03</span><h2>Research &amp; Projects</h2></div>
+    <div class="grid-cards">
+
+      <div class="card reveal">
+        <div class="card-top"><h3>Strategic target selection for reducing CO₂ emissions</h3><span class="tag">CCUS</span></div>
+        <span class="meta">PwC · Mar 2024 – Jun 2024 · Gurugram</span>
+        <p>Identified a pool of potential acquisition targets contributing to CO₂ reduction; benchmarked CCUS technologies and assessed readiness, scalability, and valuation using market multiples.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h3>Cricket franchise acquisition analysis</h3><span class="tag">₹4 Bn</span></div>
+        <span class="meta">PwC · Gurugram</span>
+        <p>Provided value analysis to the acquirer of a franchise-based international T20 team, supporting internal decision-making on a total consideration of ₹4 Bn.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h3>Portfolio valuation — multiple funds</h3><span class="tag">₹15 Bn</span></div>
+        <span class="meta">PwC · Gurugram</span>
+        <p>Valued investments for CX Partners, Amansa Capital, and Phi Capital. Led CX Partners' ₹15 Bn reporting valuation across 9 sectors — aerospace, IVF, housing finance, QSR, API, clinical research, human capital SaaS, CX-as-a-service, and fintech.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h3>Metal casting business acquisition</h3><span class="tag">₹6 Bn</span></div>
+        <span class="meta">PwC · Feb 2025 – Mar 2025 · Gurugram</span>
+        <p>Advised a tractor manufacturer on the valuation of a casting company for a potential ₹6 Bn strategic acquisition, supporting internal decision-making.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h3>FEMA valuation for equity infusion</h3><span class="tag">₹5 Bn</span></div>
+        <span class="meta">PwC · Gurugram</span>
+        <p>Executed a FEMA-compliant valuation for a ₹5 Bn foreign equity infusion into an Indian satellite firm, addressing AGR dues.</p>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top"><h3>Numerical modeling of laser directed energy deposition</h3><span class="tag">M.Tech Thesis</span></div>
+        <span class="meta">Advisor: Prof. Ramesh Singh · IIT Bombay</span>
+        <p>Built a fully coupled metallurgical-thermomechanical 3D finite element model predicting residual stress and dilution in multilayer laser DED, using Fluent (melt-pool dynamics) and ABAQUS (DFLUX, USDFLD, UEXPAN, UMAT subroutines) to map a process window for compressive residual stress and sound metallurgical bonding.</p>
+      </div>
+
     </div>
-    <!-- End #contact -->
+  </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-5 copyright">
-                    <p>
-                        Copyright &copy; <span id="current-year">2022</span> YOUR NAME
-                    </p>
-                </div>
-                <div class="col-sm-2 top">
-                    <span id="to-top">
-                        <i class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </span>
-                </div>
-                <div class="col-sm-5 social">
-                    <ul>
-                        <li>
-                            <a href="https://github.com/pra1608" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://stackoverflow.com/" target="_blank"><i class="fa fa-stack-overflow" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/in/prakhar-jain-842423119/" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://www.facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </li>
-                        <li>
-                            <a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">04</span><h2>Skills</h2></div>
+    <div class="skill-cats">
+      <div class="skill-cat reveal">
+        <h4>Valuation &amp; Financial Data</h4>
+        <div class="chip-row">
+          <span class="chip">CapitalIQ</span><span class="chip">Bloomberg</span><span class="chip">Mergermarket</span>
+          <span class="chip">PrivateCircle</span><span class="chip">VCCEdge</span><span class="chip">MS Excel</span><span class="chip">MS PowerPoint</span>
         </div>
-    </footer>
-    <!-- End footer -->
+      </div>
+      <div class="skill-cat reveal">
+        <h4>Programming &amp; Analytics</h4>
+        <div class="chip-row">
+          <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">SciPy</span>
+          <span class="chip">ScikitLearn</span><span class="chip">TensorFlow</span><span class="chip">MATLAB</span><span class="chip">PostgreSQL</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal">
+        <h4>Engineering Simulation</h4>
+        <div class="chip-row">
+          <span class="chip">ABAQUS</span><span class="chip">HyperMesh</span><span class="chip">Ansys Fluent</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/scripts.min.js"></script>
+<section id="credentials">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">05</span><h2>Credentials</h2></div>
+    <div class="two-col">
+      <div class="list-block reveal">
+        <h4>Certifications</h4>
+        <ul>
+          <li><i class="fa-solid fa-check"></i><span>FMI Foundations in Financial Modeling</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Excel VBA for Creative Problem Solving</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Deep Learning Specialization</span></li>
+          <li><i class="fa-solid fa-check"></i><span>Python for Everybody Specialization</span></li>
+        </ul>
+      </div>
+      <div class="list-block reveal">
+        <h4>Achievements</h4>
+        <ul>
+          <li><i class="fa-solid fa-award"></i><span>99th+ percentile, GATE Exam 2019</span></li>
+          <li><i class="fa-solid fa-award"></i><span>Lean Six Sigma Green Belt Certification, KPMG (2019)</span></li>
+          <li><i class="fa-solid fa-award"></i><span>Cum. GPA 9.06 — M.Tech, IIT Bombay</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">06</span><h2>Get in touch</h2></div>
+    <div class="contact-inner reveal">
+      <div class="contact-links">
+        <a href="mailto:prakharjain.oist@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; prakharjain.oist@gmail.com</a>
+        <a href="tel:+918839346796"><i class="fa-solid fa-phone"></i>&nbsp; +91-8839346796</a>
+      </div>
+      <div class="social-row">
+        <a href="https://github.com/pra1608" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="https://in.linkedin.com/in/prakhar-jain-842423119" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> Prakhar Jain</p>
+    <p id="to-top">Back to top ↑</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+  // Back to top
+  document.getElementById('to-top').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Ledger count-up (signature element)
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function animateLedger(){
+    document.querySelectorAll('.ledger-num').forEach(el => {
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = el.dataset.decimal === "true";
+      const suffix = el.dataset.suffix || null;
+      if(prefersReduced){
+        el.textContent = isDecimal ? target.toFixed(2) : (suffix ? Math.round(target)+suffix : '₹'+Math.round(target)+'Bn');
+        return;
+      }
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const val = target * eased;
+        if(isDecimal){
+          el.textContent = val.toFixed(2);
+        } else if(suffix){
+          el.textContent = Math.round(val) + suffix;
+        } else {
+          el.textContent = '₹' + Math.round(val) + 'Bn';
+        }
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  window.addEventListener('load', () => setTimeout(animateLedger, 300));
+</script>
 </body>
-
 </html>
