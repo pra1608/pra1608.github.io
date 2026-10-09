@@ -6,10 +6,22 @@
 <title>Prakhar Jain — Valuation Advisory, PwC India</title>
 <meta name="description" content="Prakhar Jain — Assistant Manager, Valuation Advisory (Deals) at PwC India. IIT Bombay M.Tech. DCF, comparables, and cross-border valuation work.">
 
+<meta name="theme-color" content="#0F2436">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Prakhar Jain — Valuation Advisory, PwC India">
+<meta property="og:description" content="DCF, comparables, and cross-border valuation work across aerospace, clean energy, sport, and private equity portfolios.">
+<meta property="og:url" content="https://pra1608.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230F2436'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23C9A24B'%3EPJ%3C/text%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<script>
+  try{ if(localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'; }catch(e){}
+</script>
 
 <style>
   :root{
@@ -22,7 +34,22 @@
     --teal:#4C8C86;
     --muted:#9FB2C2;
     --line: rgba(201,162,75,0.35);
+    --hair: rgba(255,255,255,0.06);
+    --header-bg: rgba(15,36,54,0.82);
     --maxw: 1120px;
+  }
+  :root[data-theme="light"]{
+    --ink:#F6F3EA;
+    --ink-2:#FFFFFF;
+    --ink-3:#ECE6D6;
+    --paper:#0F2436;
+    --brass:#9A7526;
+    --brass-dim:#8f7439;
+    --teal:#2F6D67;
+    --muted:#4A5E70;
+    --line: rgba(154,117,38,0.35);
+    --hair: rgba(15,36,54,0.09);
+    --header-bg: rgba(246,243,234,0.86);
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -33,6 +60,7 @@
     font-family:'IBM Plex Sans', sans-serif;
     line-height:1.6;
     overflow-x:hidden;
+    transition:background .35s ease, color .35s ease;
   }
   ::selection{ background:var(--brass); color:var(--ink); }
 
@@ -55,9 +83,16 @@
   /* ---------- Nav ---------- */
   header{
     position:fixed; top:0; left:0; right:0; z-index:100;
-    background:rgba(15,36,54,0.82);
+    background:var(--header-bg);
     backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
+    transition:transform .35s ease, background .35s ease;
+  }
+  header.hide{ transform:translateY(-100%); }
+  #progress{
+    position:fixed; top:0; left:0; right:0; height:2px; z-index:101;
+    background:linear-gradient(90deg, var(--teal), var(--brass));
+    transform-origin:0 50%; transform:scaleX(0);
   }
   .nav-inner{
     max-width:var(--maxw); margin:0 auto; padding:0 1.75rem;
@@ -79,8 +114,16 @@
     content:''; position:absolute; left:0; bottom:-2px; height:1px; width:0;
     background:var(--brass); transition:width .25s ease;
   }
-  nav#menu a:hover{ color:var(--paper); }
-  nav#menu a:hover::after{ width:100%; }
+  nav#menu a:hover, nav#menu a.active{ color:var(--paper); }
+  nav#menu a:hover::after, nav#menu a.active::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:.6rem; }
+  .icon-btn{
+    background:none; border:1px solid var(--line); color:var(--paper);
+    width:40px; height:40px; border-radius:6px; cursor:pointer; font-size:1rem;
+    transition:border-color .25s ease, color .25s ease;
+  }
+  .icon-btn:hover{ border-color:var(--brass); color:var(--brass); }
 
   #mobile-toggle{
     display:none; background:none; border:1px solid var(--line); color:var(--paper);
@@ -89,13 +132,15 @@
 
   @media (max-width: 800px){
     nav#menu{
-      position:fixed; top:64px; left:0; right:0; bottom:0;
+      /* absolute, not fixed: the header's backdrop-filter makes it the containing block */
+      position:absolute; top:100%; left:0; right:0; height:calc(100svh - 64px);
       background:var(--ink); flex-direction:column; gap:0;
-      padding:1.5rem 1.75rem; transform:translateY(-110%);
-      transition:transform .35s ease; border-top:1px solid var(--line);
+      padding:1.5rem 1.75rem; border-top:1px solid var(--line);
+      opacity:0; visibility:hidden; transform:translateY(-12px);
+      transition:opacity .3s ease, transform .3s ease, visibility .3s;
     }
-    nav#menu.open{ transform:translateY(0); }
-    nav#menu a{ padding:.9rem 0; border-bottom:1px solid rgba(255,255,255,.06); }
+    nav#menu.open{ opacity:1; visibility:visible; transform:none; }
+    nav#menu a{ padding:.9rem 0; border-bottom:1px solid var(--hair); }
     #mobile-toggle{ display:block; }
   }
 
@@ -106,7 +151,17 @@
     background:
       radial-gradient(1200px 500px at 85% -10%, rgba(201,162,75,0.10), transparent 60%),
       radial-gradient(900px 500px at -10% 110%, rgba(76,140,134,0.12), transparent 60%);
+    overflow:hidden;
   }
+  #hero-canvas{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; opacity:.55; }
+  #hero .wrap{ position:relative; z-index:1; width:100%; }
+  .hero-typed{
+    font-family:'IBM Plex Mono', monospace; font-size:clamp(.9rem,1.5vw,1.05rem);
+    color:var(--paper); margin-bottom:1.2rem; min-height:1.6em;
+  }
+  .hero-typed .typed{ color:var(--brass); }
+  .caret{ display:inline-block; width:.55em; color:var(--brass); animation:blink 1s steps(1) infinite; }
+  @keyframes blink{ 50%{ opacity:0; } }
   .hero-grid{
     display:grid; grid-template-columns: 1fr; gap:2.5rem;
   }
@@ -146,7 +201,7 @@
   .ledger-label{ font-size:.76rem; color:var(--muted); margin-top:.2rem; }
 
   /* ---------- Sections ---------- */
-  section{ padding:6rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  section{ padding:6rem 0; border-bottom:1px solid var(--hair); }
   .section-head{
     display:flex; align-items:baseline; gap:1rem; margin-bottom:2.6rem;
   }
@@ -191,9 +246,17 @@
   .grid-cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; }
   @media (max-width:800px){ .grid-cards{ grid-template-columns:1fr; } }
   .card{
+    position:relative; overflow:hidden;
     background:var(--ink-2); border:1px solid var(--line); border-radius:4px;
     padding:1.6rem 1.7rem; transition:transform .3s ease, border-color .3s ease;
   }
+  .card::before{
+    content:''; position:absolute; inset:0; pointer-events:none; opacity:0;
+    background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(201,162,75,0.13), transparent 70%);
+    transition:opacity .3s ease;
+  }
+  .card:hover::before{ opacity:1; }
+  .card > *{ position:relative; }
   .card:hover{ transform:translateY(-4px); border-color:var(--brass); }
   .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:.6rem;}
   .card h3{ font-size:1.12rem; line-height:1.3; }
@@ -226,11 +289,50 @@
     color:var(--brass); margin-bottom:1rem; letter-spacing:.06em; font-weight:500;
   }
   .list-block li{
-    padding:.85rem 0; border-bottom:1px solid rgba(255,255,255,0.07);
+    padding:.85rem 0; border-bottom:1px solid var(--hair);
     display:flex; gap:.8rem; color:var(--muted); font-size:.95rem;
   }
   .list-block li i{ color:var(--brass); margin-top:.2rem; }
   .list-block li span{ color:var(--paper); }
+
+  /* Valuation playground */
+  .play-intro{ color:var(--muted); max-width:680px; margin:-1.4rem 0 2.4rem; }
+  .play-grid{ display:grid; grid-template-columns:1fr 1.25fr; gap:2.5rem; align-items:start; }
+  .play-grid > *{ min-width:0; }
+  @media (max-width:900px){ .play-grid{ grid-template-columns:1fr; } }
+  .slider{ margin-bottom:1.35rem; }
+  .slider label{ display:flex; justify-content:space-between; font-family:'IBM Plex Mono', monospace; font-size:.76rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-bottom:.45rem; }
+  .slider output{ color:var(--brass); font-weight:600; }
+  input[type=range]{ width:100%; accent-color:var(--brass); cursor:pointer; }
+  .play-out{ background:var(--ink-2); border:1px solid var(--line); border-radius:4px; padding:1.6rem 1.7rem; }
+  .ev-row{ display:flex; flex-wrap:wrap; gap:1.5rem 2.5rem; margin-bottom:1.6rem; }
+  .ev-big{ font-family:'IBM Plex Mono', monospace; font-size:clamp(1.6rem,3.4vw,2.2rem); font-weight:600; color:var(--brass); line-height:1.1; }
+  .ev-small{ font-family:'IBM Plex Mono', monospace; font-size:1.15rem; font-weight:600; color:var(--paper); }
+  .ev-label{ font-size:.74rem; color:var(--muted); margin-top:.25rem; }
+  .bars{ display:flex; align-items:flex-end; gap:.6rem; height:140px; border-bottom:1px solid var(--line); }
+  .bar{ flex:1; display:flex; flex-direction:column; justify-content:flex-end; height:100%; }
+  .bar span{ display:block; background:linear-gradient(var(--brass), var(--brass-dim)); border-radius:2px 2px 0 0; height:0; transition:height .45s ease; }
+  .bar.tv span{ background:repeating-linear-gradient(45deg, var(--teal), var(--teal) 4px, transparent 4px, transparent 8px); border:1px solid var(--teal); }
+  .bar-labels{ display:flex; gap:.6rem; margin-top:.4rem; }
+  .bar-labels div{ flex:1; text-align:center; font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:var(--muted); }
+  .sens{ margin-top:1.8rem; overflow-x:auto; }
+  .sens h4{ font-family:'IBM Plex Mono', monospace; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color:var(--brass); font-weight:500; margin-bottom:.7rem; }
+  .sens table{ border-collapse:collapse; width:100%; font-family:'IBM Plex Mono', monospace; font-size:.76rem; }
+  .sens th, .sens td{ padding:.45rem .4rem; text-align:center; border:1px solid var(--hair); }
+  .sens th{ color:var(--muted); font-weight:500; }
+  .sens td.base{ outline:1px solid var(--brass); outline-offset:-1px; font-weight:600; }
+  .disclaimer{ font-size:.74rem; color:var(--muted); margin-top:1.1rem; }
+
+  /* Toast */
+  #toast{
+    position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%, calc(100% + 2rem)); z-index:200;
+    background:var(--brass); color:var(--ink); font-family:'IBM Plex Mono', monospace; font-size:.8rem;
+    padding:.7rem 1.1rem; border-radius:3px; visibility:hidden;
+    transition:transform .35s ease, visibility .35s;
+  }
+  #toast.show{ transform:translate(-50%, 0); visibility:visible; }
+  .copy-btn{ background:none; border:none; color:var(--muted); cursor:pointer; font-size:.9rem; margin-left:.4rem; }
+  .copy-btn:hover{ color:var(--brass); }
 
   /* Contact */
   #contact{ border-bottom:none; }
@@ -257,12 +359,14 @@
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
     .reveal{ opacity:1; transform:none; transition:none; }
-    .card, .btn, nav#menu a::after, .social-row a{ transition:none; }
+    .card, .btn, nav#menu a::after, .social-row a, header, .bar span{ transition:none; }
+    .caret{ animation:none; }
   }
 </style>
 </head>
 <body>
 
+<div id="progress" aria-hidden="true"></div>
 <header>
   <div class="nav-inner">
     <a href="#hero" class="brand">P<span>·</span>Jain</a>
@@ -272,19 +376,25 @@
       <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#credentials">Credentials</a>
+      <a href="#playground">Playground</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button id="mobile-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    <div class="nav-actions">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle light/dark theme"><i class="fa-solid fa-sun"></i></button>
+      <button id="mobile-toggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
   </div>
 </header>
 
 <section id="hero">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Valuation Advisory — Deals · PwC India</p>
         <h1 class="hero-name">Prakhar Jain</h1>
         <p class="hero-role">Assistant Manager, Deals (Valuations) — Bangalore, India</p>
+        <p class="hero-typed" aria-label="DCF models, comparable company analysis, FEMA valuations, PE and VC portfolio valuations">&gt; building <span class="typed" id="typed"></span><span class="caret">▍</span></p>
         <p class="hero-desc">I turn engineering rigor into deal-ready numbers — DCF, comparable company &amp; transaction analysis, and cross-border compliance valuations across aerospace, clean energy, sport, and private equity portfolios.</p>
         <div class="hero-ctas">
           <a href="resume.pdf" download class="btn solid">Download Résumé</a>
@@ -458,12 +568,43 @@
   </div>
 </section>
 
+<section id="playground">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">06</span><h2>Valuation Playground</h2></div>
+    <p class="play-intro reveal">A five-year DCF in miniature. Move the assumptions and watch enterprise value, the FCF profile, and the WACC × terminal-growth sensitivity update live.</p>
+    <div class="play-grid">
+      <div class="reveal" id="dcf-inputs">
+        <div class="slider"><label for="in-rev">Base revenue (₹ Cr) <output id="out-rev"></output></label><input type="range" id="in-rev" min="100" max="5000" step="50" value="1000"></div>
+        <div class="slider"><label for="in-growth">Revenue growth p.a. <output id="out-growth"></output></label><input type="range" id="in-growth" min="0" max="30" step="0.5" value="12"></div>
+        <div class="slider"><label for="in-margin">EBITDA margin <output id="out-margin"></output></label><input type="range" id="in-margin" min="5" max="45" step="0.5" value="20"></div>
+        <div class="slider"><label for="in-conv">FCF conversion of EBITDA <output id="out-conv"></output></label><input type="range" id="in-conv" min="20" max="90" step="1" value="55"></div>
+        <div class="slider"><label for="in-wacc">WACC <output id="out-wacc"></output></label><input type="range" id="in-wacc" min="8" max="18" step="0.25" value="12"></div>
+        <div class="slider"><label for="in-tg">Terminal growth <output id="out-tg"></output></label><input type="range" id="in-tg" min="2" max="6" step="0.25" value="4"></div>
+      </div>
+      <div class="play-out reveal">
+        <div class="ev-row">
+          <div><div class="ev-big" id="ev">—</div><div class="ev-label">Enterprise value (₹ Cr)</div></div>
+          <div><div class="ev-small" id="ev-mult">—</div><div class="ev-label">EV / current EBITDA</div></div>
+          <div><div class="ev-small" id="tv-share">—</div><div class="ev-label">Terminal value share</div></div>
+        </div>
+        <div class="bars" id="bars"></div>
+        <div class="bar-labels" id="bar-labels"></div>
+        <div class="sens">
+          <h4>Sensitivity — EV (₹ Cr), WACC ↓ × terminal growth →</h4>
+          <table id="sens"></table>
+        </div>
+        <p class="disclaimer">Illustrative only — simplified FCFF model, mid-year convention ignored, not investment advice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
-    <div class="section-head reveal"><span class="idx">06</span><h2>Get in touch</h2></div>
+    <div class="section-head reveal"><span class="idx">07</span><h2>Get in touch</h2></div>
     <div class="contact-inner reveal">
       <div class="contact-links">
-        <a href="mailto:prakharjain.oist@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; prakharjain.oist@gmail.com</a>
+        <div><a href="mailto:prakharjain.oist@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; prakharjain.oist@gmail.com</a><button class="copy-btn" id="copy-email" aria-label="Copy email address"><i class="fa-regular fa-copy"></i></button></div>
         <a href="tel:+918839346796"><i class="fa-solid fa-phone"></i>&nbsp; +91-8839346796</a>
       </div>
       <div class="social-row">
@@ -480,6 +621,7 @@
     <p id="to-top">Back to top ↑</p>
   </div>
 </footer>
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -529,6 +671,208 @@
     });
   }
   window.addEventListener('load', () => setTimeout(animateLedger, 300));
+
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+
+  // Toast
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  }
+
+  // Theme toggle
+  const themeBtn = document.getElementById('theme-toggle');
+  function syncThemeIcon(){
+    const light = document.documentElement.dataset.theme === 'light';
+    themeBtn.innerHTML = light ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', css('--ink'));
+  }
+  themeBtn.addEventListener('click', () => {
+    const light = document.documentElement.dataset.theme !== 'light';
+    if(light) document.documentElement.dataset.theme = 'light';
+    else delete document.documentElement.dataset.theme;
+    try{ localStorage.setItem('theme', light ? 'light' : 'dark'); }catch(e){}
+    syncThemeIcon();
+    drawHero();
+  });
+  syncThemeIcon();
+
+  // Scroll progress, auto-hiding header, active nav link
+  const progress = document.getElementById('progress');
+  const header = document.querySelector('header');
+  let lastY = window.scrollY;
+  function onScroll(){
+    const y = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? y / max : 0) + ')';
+    header.classList.toggle('hide', y > lastY && y > 200 && !menu.classList.contains('open'));
+    lastY = y;
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  const navLinks = [...menu.querySelectorAll('a')];
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(!e.isIntersecting) return;
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s => spy.observe(s));
+
+  // Typewriter
+  const phrases = ['DCF models', 'comparable company analyses', 'FEMA-compliant valuations', 'PE / VC portfolio valuations', 'deal-ready numbers'];
+  const typedEl = document.getElementById('typed');
+  if(prefersReduced){
+    typedEl.textContent = phrases[0];
+  } else {
+    let pi = 0, ci = 0, deleting = false;
+    (function type(){
+      const word = phrases[pi];
+      ci += deleting ? -1 : 1;
+      typedEl.textContent = word.slice(0, ci);
+      let delay = deleting ? 35 : 70;
+      if(!deleting && ci === word.length){ deleting = true; delay = 1600; }
+      else if(deleting && ci === 0){ deleting = false; pi = (pi + 1) % phrases.length; delay = 350; }
+      setTimeout(type, delay);
+    })();
+  }
+
+  // Hero canvas — flowing market lines
+  const canvas = document.getElementById('hero-canvas');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0, heroVisible = true, frame = 0, mouseY = 0;
+  function resizeHero(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function drawHero(t = frame){
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = css('--line');
+    for(let x = 40; x < W; x += 48) for(let y = 40; y < H; y += 48) ctx.fillRect(x, y, 1, 1);
+    const lines = [
+      {color:css('--brass'), base:.62, amp:46, speed:.0006, width:1.6},
+      {color:css('--teal'),  base:.72, amp:34, speed:.0009, width:1.2},
+      {color:css('--muted'), base:.80, amp:24, speed:.0012, width:.8}
+    ];
+    lines.forEach((l, i) => {
+      ctx.beginPath();
+      for(let x = 0; x <= W; x += 6){
+        const k = x / W;
+        const y = H * l.base - k * H * .25 + mouseY * (i + 1) * 6
+          + Math.sin(k * 9 + t * l.speed * 4 + i) * l.amp * .5
+          + Math.sin(k * 23 - t * l.speed * 6) * l.amp * .25
+          + Math.sin(k * 61 + t * l.speed * 10 + i * 2) * l.amp * .1;
+        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = l.color; ctx.lineWidth = l.width; ctx.globalAlpha = .7 - i * .18;
+      ctx.stroke();
+    });
+    ctx.globalAlpha = 1;
+  }
+  function loopHero(){
+    if(heroVisible){ frame++; drawHero(); }
+    requestAnimationFrame(loopHero);
+  }
+  resizeHero(); drawHero();
+  window.addEventListener('resize', () => { resizeHero(); drawHero(); });
+  if(!prefersReduced){
+    new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; }).observe(document.getElementById('hero'));
+    window.addEventListener('mousemove', (e) => { mouseY = e.clientY / window.innerHeight - .5; }, {passive:true});
+    requestAnimationFrame(loopHero);
+  }
+
+  // Card spotlight
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // Copy email
+  document.getElementById('copy-email').addEventListener('click', () => {
+    navigator.clipboard.writeText('prakharjain.oist@gmail.com')
+      .then(() => toast('Email copied to clipboard'))
+      .catch(() => toast('Copy failed — prakharjain.oist@gmail.com'));
+  });
+
+  // Valuation playground — simplified 5-year FCFF DCF
+  const fmt = (n) => Math.round(n).toLocaleString('en-IN');
+  const inputs = {
+    rev:    {suffix:'',  pre:'₹'},
+    growth: {suffix:'%', pre:''},
+    margin: {suffix:'%', pre:''},
+    conv:   {suffix:'%', pre:''},
+    wacc:   {suffix:'%', pre:''},
+    tg:     {suffix:'%', pre:''}
+  };
+  function dcf(rev, g, m, c, wacc, tg){
+    if(wacc <= tg) return null;
+    const fcfs = [];
+    let pv = 0, r = rev;
+    for(let t = 1; t <= 5; t++){
+      r *= 1 + g;
+      const fcf = r * m * c;
+      fcfs.push(fcf);
+      pv += fcf / Math.pow(1 + wacc, t);
+    }
+    const tv = fcfs[4] * (1 + tg) / (wacc - tg);
+    const pvTv = tv / Math.pow(1 + wacc, 5);
+    return {ev: pv + pvTv, pvTv, fcfs};
+  }
+  function updateDcf(){
+    const v = {};
+    for(const k in inputs){
+      v[k] = parseFloat(document.getElementById('in-' + k).value);
+      document.getElementById('out-' + k).textContent = inputs[k].pre + (k === 'rev' ? fmt(v[k]) : v[k]) + inputs[k].suffix;
+    }
+    const args = [v.rev, v.growth / 100, v.margin / 100, v.conv / 100];
+    const res = dcf(...args, v.wacc / 100, v.tg / 100);
+    document.getElementById('ev').textContent = '₹' + fmt(res.ev);
+    document.getElementById('ev-mult').textContent = (res.ev / (v.rev * v.margin / 100)).toFixed(1) + 'x';
+    document.getElementById('tv-share').textContent = Math.round(res.pvTv / res.ev * 100) + '%';
+
+    // FCF bars + discounted terminal value bar
+    const vals = [...res.fcfs, res.pvTv];
+    const max = Math.max(...vals);
+    const bars = document.getElementById('bars');
+    if(!bars.children.length){
+      bars.innerHTML = vals.map((_, i) => '<div class="bar' + (i === 5 ? ' tv' : '') + '"><span></span></div>').join('');
+    }
+    [...bars.children].forEach((b, i) => {
+      b.firstChild.style.height = (vals[i] / max * 100) + '%';
+      b.title = (i === 5 ? 'PV of terminal value' : 'Year ' + (i + 1) + ' FCF') + ': ₹' + fmt(vals[i]) + ' Cr';
+    });
+    document.getElementById('bar-labels').innerHTML =
+      vals.map((x, i) => '<div>' + (i === 5 ? 'PV(TV)' : 'Y' + (i + 1)) + '<br>' + fmt(x) + '</div>').join('');
+
+    // Sensitivity grid (heat-shaded relative to base case)
+    const wSteps = [-1, -.5, 0, .5, 1], gSteps = [-.5, -.25, 0, .25, .5];
+    let html = '<tr><th></th>' + gSteps.map(d => '<th>' + (v.tg + d).toFixed(2) + '%</th>').join('') + '</tr>';
+    wSteps.forEach(dw => {
+      html += '<tr><th>' + (v.wacc + dw).toFixed(2) + '%</th>';
+      gSteps.forEach(dg => {
+        const r = dcf(...args, (v.wacc + dw) / 100, (v.tg + dg) / 100);
+        if(!r){ html += '<td>n/m</td>'; return; }
+        const diff = r.ev / res.ev - 1;
+        const a = Math.min(Math.abs(diff) * 1.4, .45);
+        const bg = diff >= 0 ? 'rgba(76,140,134,' + a + ')' : 'rgba(201,162,75,' + a + ')';
+        html += '<td class="' + (dw === 0 && dg === 0 ? 'base' : '') + '" style="background:' + bg + '">' + fmt(r.ev) + '</td>';
+      });
+      html += '</tr>';
+    });
+    document.getElementById('sens').innerHTML = html;
+  }
+  document.querySelectorAll('#dcf-inputs input').forEach(i => i.addEventListener('input', updateDcf));
+  updateDcf();
 </script>
 </body>
 </html>
