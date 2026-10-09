@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prakhar Jain — Valuation Advisory, PwC India</title>
-<meta name="description" content="Prakhar Jain — Assistant Manager, Valuation Advisory (Deals) at PwC India. IIT Bombay M.Tech. DCF, comparables, and cross-border valuation work.">
+<meta name="description" content="Prakhar Jain — Assistant Manager, Valuation Advisory (Deals) at PwC India. Advanced Financial Modeler (FMI). IIT Bombay M.Tech. DCF, comparables, and cross-border valuation work.">
 
 <meta name="theme-color" content="#0F2436">
 <meta property="og:type" content="website">
@@ -36,6 +36,8 @@
     --line: rgba(201,162,75,0.35);
     --hair: rgba(255,255,255,0.06);
     --header-bg: rgba(15,36,54,0.82);
+    --up:#5FB3A8;
+    --down:#E08A6D;
     --maxw: 1120px;
   }
   :root[data-theme="light"]{
@@ -50,6 +52,8 @@
     --line: rgba(154,117,38,0.35);
     --hair: rgba(15,36,54,0.09);
     --header-bg: rgba(246,243,234,0.86);
+    --up:#23756B;
+    --down:#B4513A;
   }
 
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -103,7 +107,7 @@
     font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
   }
   .brand span{ color:var(--brass); }
-  nav#menu{ display:flex; gap:2rem; }
+  nav#menu{ display:flex; gap:1.45rem; }
   nav#menu a{
     font-family:'IBM Plex Mono', monospace; font-size:.78rem;
     letter-spacing:.06em; text-transform:uppercase;
@@ -130,7 +134,7 @@
     width:40px; height:40px; border-radius:6px; cursor:pointer; font-size:1rem;
   }
 
-  @media (max-width: 800px){
+  @media (max-width: 1060px){
     nav#menu{
       /* absolute, not fixed: the header's backdrop-filter makes it the containing block */
       position:absolute; top:100%; left:0; right:0; height:calc(100svh - 64px);
@@ -295,6 +299,137 @@
   .list-block li i{ color:var(--brass); margin-top:.2rem; }
   .list-block li span{ color:var(--paper); }
 
+  /* Market strip */
+  .market{
+    display:none; flex-wrap:wrap; align-items:center; gap:.5rem 1.6rem;
+    font-family:'IBM Plex Mono', monospace; font-size:.76rem;
+    padding:.6rem 0; margin-bottom:2.2rem;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .market.ready{ display:flex; }
+  .mk{ display:flex; gap:.5rem; align-items:baseline; white-space:nowrap; }
+  .mk-label{ color:var(--muted); letter-spacing:.06em; }
+  .mk-val{ color:var(--paper); font-weight:600; }
+  .mk-chg.up{ color:var(--up); }
+  .mk-chg.down{ color:var(--down); }
+  .mk-chg.flat{ color:var(--muted); }
+  .mk-asof{ color:var(--muted); font-size:.68rem; margin-left:auto; }
+  .live-dot{ display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--up); margin-right:.45rem; animation:pulse 2s ease-in-out infinite; }
+  .live-dot.stale{ background:var(--muted); animation:none; }
+  @keyframes pulse{ 50%{ opacity:.25; } }
+  @media (max-width:700px){ .mk-asof{ margin-left:0; width:100%; } }
+
+  /* Research spotlight */
+  .spot-grid{ display:grid; grid-template-columns:1fr 1.35fr; gap:2.5rem; align-items:start; }
+  @media (max-width:900px){ .spot-grid{ grid-template-columns:1fr; } }
+  .spot-grid > *{ min-width:0; }
+  .spot-copy h3{ font-size:1.45rem; line-height:1.25; margin-bottom:.5rem; }
+  .spot-copy .meta{ font-family:'IBM Plex Mono', monospace; font-size:.76rem; color:var(--teal); display:block; margin-bottom:1.1rem; }
+  .spot-copy p{ color:var(--muted); margin-bottom:1rem; }
+  .spot-copy li{ position:relative; padding-left:1.1rem; margin-bottom:.55rem; color:var(--muted); font-size:.95rem; }
+  .spot-copy li::before{ content:'—'; position:absolute; left:0; color:var(--brass-dim); }
+  .spot-copy li strong{ color:var(--paper); font-weight:600; }
+  .sim{ background:#0B1B29; border:1px solid var(--line); border-radius:4px; padding:1rem; color:#F1EEE4; }
+  .sim-bar{ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:.8rem; margin-bottom:.8rem; }
+  .seg{ display:inline-flex; border:1px solid rgba(201,162,75,0.35); border-radius:3px; overflow:hidden; }
+  .seg button{
+    background:none; border:none; color:#9FB2C2; cursor:pointer; padding:.45rem .8rem;
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;
+  }
+  .seg button[aria-pressed="true"]{ background:#C9A24B; color:#0F2436; }
+  .sim-btn{ background:none; border:1px solid rgba(201,162,75,0.35); color:#F1EEE4; border-radius:3px; padding:.4rem .7rem; cursor:pointer; font-family:'IBM Plex Mono', monospace; font-size:.72rem; text-transform:uppercase; }
+  .sim-btn:hover{ border-color:#C9A24B; color:#C9A24B; }
+  #ded-canvas{ width:100%; aspect-ratio:160 / 70; display:block; border-radius:2px; background:#0B1B29; }
+  .sim-legend{ display:flex; align-items:center; gap:.6rem; margin-top:.7rem; font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:#9FB2C2; }
+  .sim-legend .ramp{ flex:1; height:8px; border-radius:2px; }
+  .sim-stats{ display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin-top:.8rem; font-family:'IBM Plex Mono', monospace; font-size:.74rem; color:#9FB2C2; }
+  .sim-stats b{ color:#C9A24B; font-weight:600; }
+  .sim .slider{ margin:.9rem 0 0; }
+  .sim .slider label{ color:#9FB2C2; }
+  .sim .slider output{ color:#C9A24B; }
+  .sim input[type=range]{ accent-color:#C9A24B; }
+  .sim-note{ font-size:.72rem; color:#9FB2C2; margin-top:.7rem; }
+
+  /* Featured credential */
+  .feature-cred{
+    display:grid; grid-template-columns:auto 1fr; gap:1.6rem; align-items:start;
+    background:var(--ink-2); border:1px solid var(--brass); border-radius:4px;
+    padding:1.7rem 1.8rem; margin-bottom:2.8rem; position:relative; overflow:hidden;
+  }
+  .feature-cred::after{
+    content:''; position:absolute; top:-60%; right:-20%; width:60%; height:220%; pointer-events:none;
+    background:linear-gradient(100deg, transparent 30%, rgba(201,162,75,0.10) 50%, transparent 70%);
+    animation:sheen 6s ease-in-out infinite;
+  }
+  @keyframes sheen{ 0%,60%{ transform:translateX(-160%); } 100%{ transform:translateX(160%); } }
+  .badge-afm{
+    width:84px; height:84px; border-radius:50%; border:2px solid var(--brass);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.45rem; color:var(--brass);
+    box-shadow:0 0 0 6px rgba(201,162,75,0.10);
+  }
+  .badge-afm small{ font-family:'IBM Plex Mono', monospace; font-size:.55rem; letter-spacing:.14em; font-weight:500; color:var(--muted); }
+  .feature-cred h3{ font-size:1.35rem; margin:.35rem 0 .15rem; }
+  .feature-cred .meta{ font-family:'IBM Plex Mono', monospace; font-size:.78rem; color:var(--teal); display:block; margin-bottom:.9rem; }
+  .feature-cred li{ position:relative; padding-left:1.1rem; margin-bottom:.55rem; color:var(--muted); font-size:.95rem; }
+  .feature-cred li::before{ content:'—'; position:absolute; left:0; color:var(--brass-dim); }
+  @media (max-width:600px){ .feature-cred{ grid-template-columns:1fr; } }
+
+  /* Valuation methods */
+  .tabs{ display:flex; gap:.4rem; border-bottom:1px solid var(--line); margin-bottom:1.8rem; overflow-x:auto; }
+  .tab{
+    background:none; border:none; border-bottom:2px solid transparent; margin-bottom:-1px;
+    color:var(--muted); cursor:pointer; padding:.7rem 1rem; white-space:nowrap;
+    font-family:'IBM Plex Mono', monospace; font-size:.8rem; letter-spacing:.05em; text-transform:uppercase;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .tab:hover{ color:var(--paper); }
+  .tab[aria-selected="true"]{ color:var(--brass); border-bottom-color:var(--brass); }
+  .tab-panel{ display:grid; grid-template-columns:1.1fr 1fr; gap:2.5rem; animation:fadeUp .4s ease; }
+  .tab-panel[hidden]{ display:none; }
+  .tab-panel > *{ min-width:0; }
+  @keyframes fadeUp{ from{ opacity:0; transform:translateY(8px); } to{ opacity:1; transform:none; } }
+  @media (max-width:900px){ .tab-panel{ grid-template-columns:1fr; } }
+  .tab-panel h3{ font-size:1.3rem; margin-bottom:.6rem; }
+  .tab-panel p{ color:var(--muted); margin-bottom:1rem; }
+  .formula{
+    font-family:'IBM Plex Mono', monospace; font-size:.85rem; color:var(--paper);
+    background:var(--ink-2); border-left:2px solid var(--brass); padding:.8rem 1rem; margin:0 0 1.2rem; overflow-x:auto;
+  }
+  .pc{ display:grid; grid-template-columns:1fr 1fr; gap:1.2rem; }
+  @media (max-width:500px){ .pc{ grid-template-columns:1fr; } }
+  .pc h4{ font-family:'IBM Plex Mono', monospace; font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; color:var(--brass); font-weight:500; margin-bottom:.5rem; }
+  .pc li{ color:var(--muted); font-size:.88rem; margin-bottom:.4rem; padding-left:1rem; position:relative; }
+  .pc li::before{ content:'·'; position:absolute; left:.2rem; color:var(--brass); }
+  .ex{ background:var(--ink-2); border:1px solid var(--line); border-radius:4px; padding:1.3rem 1.4rem; }
+  .ex h4{ font-family:'IBM Plex Mono', monospace; font-size:.74rem; text-transform:uppercase; letter-spacing:.06em; color:var(--brass); font-weight:500; margin-bottom:.8rem; }
+  .ex table{ width:100%; border-collapse:collapse; font-family:'IBM Plex Mono', monospace; font-size:.8rem; }
+  .ex th, .ex td{ padding:.45rem .3rem; text-align:right; border-bottom:1px solid var(--hair); }
+  .ex th:first-child, .ex td:first-child{ text-align:left; }
+  .ex th{ color:var(--muted); font-weight:500; }
+  .ex tr.stat td{ color:var(--brass); }
+  .ex .result{ margin-top:1rem; font-size:.9rem; color:var(--muted); }
+  .ex .result b{ font-family:'IBM Plex Mono', monospace; color:var(--brass); }
+  .steps{ list-style:none; }
+  .steps li{ counter-increment:step; position:relative; padding-left:2rem; margin-bottom:.8rem; color:var(--muted); font-size:.9rem; }
+  .steps li::before{ content:counter(step); position:absolute; left:0; top:.05rem; width:1.4rem; height:1.4rem; border-radius:50%; border:1px solid var(--brass); color:var(--brass); font-family:'IBM Plex Mono', monospace; font-size:.7rem; display:flex; align-items:center; justify-content:center; }
+  .link-btn{ display:inline-block; margin-top:1rem; font-family:'IBM Plex Mono', monospace; font-size:.78rem; text-transform:uppercase; letter-spacing:.05em; color:var(--brass); border-bottom:1px solid var(--brass); }
+  .ff{ margin-top:3rem; }
+  .ff h4{ font-family:'IBM Plex Mono', monospace; font-size:.76rem; text-transform:uppercase; letter-spacing:.06em; color:var(--brass); font-weight:500; margin-bottom:.4rem; }
+  .ff .sub{ color:var(--muted); font-size:.85rem; margin-bottom:1.2rem; }
+  .ff-row{ display:grid; grid-template-columns:110px 1fr; gap:1rem; align-items:center; margin-bottom:.9rem; }
+  .ff-label{ font-family:'IBM Plex Mono', monospace; font-size:.76rem; color:var(--paper); }
+  .ff-track{ position:relative; height:30px; background:repeating-linear-gradient(90deg, var(--hair) 0 1px, transparent 1px 10%); }
+  .ff-bar{
+    position:absolute; top:4px; bottom:4px; border-radius:2px; transition:left .45s ease, width .45s ease;
+    background:linear-gradient(90deg, var(--brass-dim), var(--brass));
+  }
+  .ff-bar.dcf{ background:linear-gradient(90deg, #2F6D67, var(--teal)); }
+  .ff-bar span{ position:absolute; top:50%; transform:translateY(-50%); font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:var(--muted); white-space:nowrap; }
+  .ff-bar .lo{ right:calc(100% + 6px); }
+  .ff-bar .hi{ left:calc(100% + 6px); }
+  @media (max-width:600px){ .ff-row{ grid-template-columns:1fr; gap:.3rem; } .ff-track{ margin:0 3.2rem; } }
+
   /* Valuation playground */
   .play-intro{ color:var(--muted); max-width:680px; margin:-1.4rem 0 2.4rem; }
   .play-grid{ display:grid; grid-template-columns:1fr 1.25fr; gap:2.5rem; align-items:start; }
@@ -360,7 +495,9 @@
     html{ scroll-behavior:auto; }
     .reveal{ opacity:1; transform:none; transition:none; }
     .card, .btn, nav#menu a::after, .social-row a, header, .bar span{ transition:none; }
-    .caret{ animation:none; }
+    .caret, .live-dot, .feature-cred::after{ animation:none; }
+    .tab-panel{ animation:none; }
+    .ff-bar{ transition:none; }
   }
 </style>
 </head>
@@ -374,8 +511,10 @@
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
       <a href="#skills">Skills</a>
       <a href="#credentials">Credentials</a>
+      <a href="#methods">Methods</a>
       <a href="#playground">Playground</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -389,6 +528,13 @@
 <section id="hero">
   <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
+    <div class="market" id="market" aria-label="Indian market snapshot">
+      <span class="mk"><span class="live-dot" id="mk-dot"></span><span class="mk-label">Markets</span></span>
+      <span class="mk" data-key="nifty"></span>
+      <span class="mk" data-key="gsec"></span>
+      <span class="mk" data-key="usdinr"></span>
+      <span class="mk-asof" id="mk-asof"></span>
+    </div>
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Valuation Advisory — Deals · PwC India</p>
@@ -421,6 +567,7 @@
       <div class="reveal">
         <div class="about-fact"><div class="k">Based in</div><div class="v">Bangalore, India</div></div>
         <div class="about-fact"><div class="k">Role</div><div class="v">Assistant Manager, Valuation Advisory (Deals)</div></div>
+        <div class="about-fact"><div class="k">Credential</div><div class="v">Advanced Financial Modeler (AFM) — Financial Modeling Institute</div></div>
         <div class="about-fact"><div class="k">Education</div><div class="v">M.Tech, Mechanical Engineering — IIT Bombay</div></div>
         <div class="about-fact"><div class="k">Clients</div><div class="v">TRG · Hughes Communications · GMR Group · JSW GMR Sports · CX Fund · Amansa Capital · EIH Limited</div></div>
       </div>
@@ -507,7 +654,7 @@
 
       <div class="card reveal">
         <div class="card-top"><h3>Numerical modeling of laser directed energy deposition</h3><span class="tag">M.Tech Thesis</span></div>
-        <span class="meta">Advisor: Prof. Ramesh Singh · IIT Bombay</span>
+        <span class="meta">Advisor: Prof. Ramesh Singh · IIT Bombay · <a href="#research" style="color:var(--brass)">see it animated ↓</a></span>
         <p>Built a fully coupled metallurgical-thermomechanical 3D finite element model predicting residual stress and dilution in multilayer laser DED, using Fluent (melt-pool dynamics) and ABAQUS (DFLUX, USDFLD, UEXPAN, UMAT subroutines) to map a process window for compressive residual stress and sound metallurgical bonding.</p>
       </div>
 
@@ -515,9 +662,46 @@
   </div>
 </section>
 
+<section id="research">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">04</span><h2>Research Spotlight</h2></div>
+    <div class="spot-grid">
+      <div class="spot-copy reveal">
+        <h3>Numerical modeling of laser directed energy deposition</h3>
+        <span class="meta">M.Tech thesis · Advisor: Prof. Ramesh Singh · IIT Bombay</span>
+        <p>Laser DED builds or repairs metal parts layer by layer: a laser melts a pool on the surface while powder is blown into it. Each pass re-heats the layers beneath, and that thermal cycling locks in residual stress that can crack a repaired mold, die, or aerospace part.</p>
+        <ul>
+          <li><strong>Melt-pool dynamics</strong> in Ansys Fluent to capture pool shape and dilution into the substrate.</li>
+          <li><strong>Coupled metallurgical–thermomechanical 3D FE model</strong> in ABAQUS with DFLUX, USDFLD, UEXPAN and UMAT subroutines.</li>
+          <li><strong>Outcome:</strong> a process window that delivers compressive residual stress with sound metallurgical bonding.</li>
+        </ul>
+      </div>
+      <div class="sim reveal">
+        <div class="sim-bar">
+          <div class="seg" role="group" aria-label="Field to display">
+            <button type="button" data-mode="temp" aria-pressed="true">Temperature</button>
+            <button type="button" data-mode="stress" aria-pressed="false">Residual stress</button>
+          </div>
+          <button type="button" class="sim-btn" id="ded-replay"><i class="fa-solid fa-rotate-right"></i>&nbsp; Replay</button>
+        </div>
+        <canvas id="ded-canvas" role="img" aria-label="Animated cross-section of a laser depositing six metal layers on a substrate, coloured by temperature or residual stress"></canvas>
+        <div class="sim-legend"><span id="leg-lo">Ambient</span><div class="ramp" id="leg-ramp"></div><span id="leg-hi">Melt</span></div>
+        <div class="sim-stats">
+          <span>Layer <b id="ded-layer">1 / 6</b></span>
+          <span>Layer-1 dilution <b id="ded-dil">—</b></span>
+          <span>Peak <b id="ded-peak">—</b></span>
+          <span>Bond <b id="ded-verdict">—</b></span>
+        </div>
+        <div class="slider"><label for="ded-power">Laser power <output id="ded-power-out"></output></label><input type="range" id="ded-power" min="0.75" max="1.3" step="0.05" value="1"></div>
+        <p class="sim-note">Schematic only: a simplified 2D heat-diffusion sketch for intuition, not output from the thesis model. Too little power never fuses into the substrate; too much over-dilutes it. The thesis mapped the window in between.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="skills">
   <div class="wrap">
-    <div class="section-head reveal"><span class="idx">04</span><h2>Skills</h2></div>
+    <div class="section-head reveal"><span class="idx">05</span><h2>Skills</h2></div>
     <div class="skill-cats">
       <div class="skill-cat reveal">
         <h4>Valuation &amp; Financial Data</h4>
@@ -545,7 +729,19 @@
 
 <section id="credentials">
   <div class="wrap">
-    <div class="section-head reveal"><span class="idx">05</span><h2>Credentials</h2></div>
+    <div class="section-head reveal"><span class="idx">06</span><h2>Credentials</h2></div>
+    <div class="feature-cred reveal">
+      <div class="badge-afm" aria-hidden="true">AFM<small>FMI</small></div>
+      <div>
+        <p class="eyebrow">Featured credential</p>
+        <h3>Advanced Financial Modeler (AFM)</h3>
+        <span class="meta">Financial Modeling Institute (FMI)</span>
+        <ul>
+          <li>Passed a rigorous four-hour practical exam requiring the development of an integrated, dynamic three-statement financial model from scratch under strict time constraints.</li>
+          <li>Demonstrated proficiency in financial forecasting, scenario analysis, working capital scheduling, and dynamic debt modeling using advanced Microsoft Excel.</li>
+        </ul>
+      </div>
+    </div>
     <div class="two-col">
       <div class="list-block reveal">
         <h4>Certifications</h4>
@@ -568,9 +764,85 @@
   </div>
 </section>
 
+<section id="methods">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx">07</span><h2>Valuation Methods</h2></div>
+    <div class="reveal">
+      <div class="tabs" role="tablist" aria-label="Valuation methods">
+        <button class="tab" role="tab" id="tab-dcf" aria-controls="panel-dcf" aria-selected="true">DCF</button>
+        <button class="tab" role="tab" id="tab-comps" aria-controls="panel-comps" aria-selected="false" tabindex="-1">Comps</button>
+        <button class="tab" role="tab" id="tab-prec" aria-controls="panel-prec" aria-selected="false" tabindex="-1">Precedents</button>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-dcf" aria-labelledby="tab-dcf">
+        <div>
+          <h3>Discounted cash flow — intrinsic value</h3>
+          <p>Value is the present value of the cash the business will generate. Forecast free cash flow to the firm, discount it at the weighted average cost of capital, and add a terminal value for the years beyond the forecast.</p>
+          <div class="formula">EV = Σ FCFF<sub>t</sub> / (1+WACC)<sup>t</sup> + TV / (1+WACC)<sup>n</sup><br>TV = FCFF<sub>n+1</sub> / (WACC − g)</div>
+          <div class="pc">
+            <div><h4>Best for</h4><ul><li>Forecastable cash flows</li><li>Strategic / control decisions</li><li>FEMA and regulatory pricing</li></ul></div>
+            <div><h4>Watch out for</h4><ul><li>Terminal value often 60–80% of EV</li><li>High sensitivity to WACC and g</li><li>Optimistic management plans</li></ul></div>
+          </div>
+        </div>
+        <div class="ex">
+          <h4>How I build one</h4>
+          <ol class="steps">
+            <li>Normalise historicals and build revenue, margin and capex drivers.</li>
+            <li>Derive FCFF: EBITDA − tax on EBIT − capex − Δ working capital.</li>
+            <li>Estimate WACC: CAPM cost of equity (beta from peers, country risk), post-tax cost of debt, target leverage.</li>
+            <li>Terminal value by Gordon growth, cross-checked with an exit multiple.</li>
+            <li>Bridge EV to equity value: less net debt and debt-like items.</li>
+          </ol>
+          <a href="#playground" class="link-btn">Try it in the Playground ↓</a>
+        </div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-comps" aria-labelledby="tab-comps" hidden>
+        <div>
+          <h3>Trading comparables — what the market pays today</h3>
+          <p>Value the target off the multiples at which similar listed companies trade. Pick a peer set with similar business, growth, and margins, then apply the median or interquartile range to the target's metric.</p>
+          <div class="formula">EV<sub>target</sub> = Peer EV/EBITDA × EBITDA<sub>target</sub></div>
+          <div class="pc">
+            <div><h4>Best for</h4><ul><li>Market-anchored cross-check</li><li>Portfolio / fair-value reporting</li><li>Sectors with many listed peers</li></ul></div>
+            <div><h4>Watch out for</h4><ul><li>Peer selection drives the answer</li><li>Size, growth, calendarisation gaps</li><li>Liquidity discount for private targets</li></ul></div>
+          </div>
+        </div>
+        <div class="ex">
+          <h4>Illustrative peer set</h4>
+          <table id="comps-table"></table>
+          <p class="result" id="comps-result"></p>
+        </div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-prec" aria-labelledby="tab-prec" hidden>
+        <div>
+          <h3>Precedent transactions — what acquirers have paid</h3>
+          <p>Value the target off multiples paid in comparable M&amp;A deals. Because those prices bought control, the result already includes a control premium, which makes it the natural benchmark for acquisitions.</p>
+          <div class="formula">EV<sub>target</sub> = Deal EV/EBITDA × EBITDA<sub>target</sub></div>
+          <div class="pc">
+            <div><h4>Best for</h4><ul><li>Control acquisitions</li><li>Setting a negotiation range</li><li>Fairness opinions</li></ul></div>
+            <div><h4>Watch out for</h4><ul><li>Deals from other market cycles</li><li>Limited disclosure of terms</li><li>Deal-specific synergies in price</li></ul></div>
+          </div>
+        </div>
+        <div class="ex">
+          <h4>Illustrative transactions</h4>
+          <table id="prec-table"></table>
+          <p class="result" id="prec-result"></p>
+        </div>
+      </div>
+
+      <div class="ff">
+        <h4>Football field — the three methods side by side</h4>
+        <p class="sub">Linked to the Playground below: target EBITDA is <span id="ff-ebitda"></span>. DCF range spans the sensitivity grid; comps and precedents span the interquartile range. Illustrative peers and deals, ₹ Cr.</p>
+        <div id="ff"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="playground">
   <div class="wrap">
-    <div class="section-head reveal"><span class="idx">06</span><h2>Valuation Playground</h2></div>
+    <div class="section-head reveal"><span class="idx">08</span><h2>Valuation Playground</h2></div>
     <p class="play-intro reveal">A five-year DCF in miniature. Move the assumptions and watch enterprise value, the FCF profile, and the WACC × terminal-growth sensitivity update live.</p>
     <div class="play-grid">
       <div class="reveal" id="dcf-inputs">
@@ -601,7 +873,7 @@
 
 <section id="contact">
   <div class="wrap">
-    <div class="section-head reveal"><span class="idx">07</span><h2>Get in touch</h2></div>
+    <div class="section-head reveal"><span class="idx">09</span><h2>Get in touch</h2></div>
     <div class="contact-inner reveal">
       <div class="contact-links">
         <div><a href="mailto:prakharjain.oist@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; prakharjain.oist@gmail.com</a><button class="copy-btn" id="copy-email" aria-label="Copy email address"><i class="fa-regular fa-copy"></i></button></div>
@@ -856,12 +1128,14 @@
 
     // Sensitivity grid (heat-shaded relative to base case)
     const wSteps = [-1, -.5, 0, .5, 1], gSteps = [-.5, -.25, 0, .25, .5];
+    let evLo = Infinity, evHi = -Infinity;
     let html = '<tr><th></th>' + gSteps.map(d => '<th>' + (v.tg + d).toFixed(2) + '%</th>').join('') + '</tr>';
     wSteps.forEach(dw => {
       html += '<tr><th>' + (v.wacc + dw).toFixed(2) + '%</th>';
       gSteps.forEach(dg => {
         const r = dcf(...args, (v.wacc + dw) / 100, (v.tg + dg) / 100);
         if(!r){ html += '<td>n/m</td>'; return; }
+        evLo = Math.min(evLo, r.ev); evHi = Math.max(evHi, r.ev);
         const diff = r.ev / res.ev - 1;
         const a = Math.min(Math.abs(diff) * 1.4, .45);
         const bg = diff >= 0 ? 'rgba(76,140,134,' + a + ')' : 'rgba(201,162,75,' + a + ')';
@@ -870,9 +1144,292 @@
       html += '</tr>';
     });
     document.getElementById('sens').innerHTML = html;
+    updateMethods(v.rev * v.margin / 100, evLo, evHi, res.ev);
   }
+
+  // Valuation methods — accessible tabs
+  const tabs = [...document.querySelectorAll('.tab')];
+  function selectTab(tab){
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', (e) => {
+      const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if(!step) return;
+      const next = tabs[(i + step + tabs.length) % tabs.length];
+      selectTab(next); next.focus();
+    });
+  });
+
+  // Illustrative peer multiples and deals, applied to the Playground's EBITDA
+  const PEERS = [['Peer A', 9.8], ['Peer B', 11.2], ['Peer C', 12.5], ['Peer D', 13.1], ['Peer E', 15.4]];
+  const DEALS = [['Deal 1 (2021)', 12.0], ['Deal 2 (2022)', 13.5], ['Deal 3 (2023)', 14.2], ['Deal 4 (2024)', 16.0]];
+  function quantile(xs, q){
+    const a = [...xs].sort((x, y) => x - y), pos = (a.length - 1) * q, lo = Math.floor(pos);
+    return a[lo] + (a[Math.min(lo + 1, a.length - 1)] - a[lo]) * (pos - lo);
+  }
+  function multipleRange(rows){
+    const xs = rows.map(r => r[1]);
+    return {q1: quantile(xs, .25), med: quantile(xs, .5), q3: quantile(xs, .75)};
+  }
+  function renderMultiples(rows, tableId, resultId, ebitda){
+    const m = multipleRange(rows);
+    document.getElementById(tableId).innerHTML =
+      '<tr><th></th><th>EV / EBITDA</th><th>Implied EV</th></tr>' +
+      rows.map(r => '<tr><td>' + r[0] + '</td><td>' + r[1].toFixed(1) + 'x</td><td>' + fmt(r[1] * ebitda) + '</td></tr>').join('') +
+      '<tr class="stat"><td>Median</td><td>' + m.med.toFixed(2) + 'x</td><td>' + fmt(m.med * ebitda) + '</td></tr>';
+    document.getElementById(resultId).innerHTML =
+      'Target EBITDA ₹' + fmt(ebitda) + ' Cr → interquartile EV <b>₹' + fmt(m.q1 * ebitda) + '–' + fmt(m.q3 * ebitda) + ' Cr</b>';
+    return m;
+  }
+  function updateMethods(ebitda, dcfLo, dcfHi, dcfBase){
+    const c = renderMultiples(PEERS, 'comps-table', 'comps-result', ebitda);
+    const p = renderMultiples(DEALS, 'prec-table', 'prec-result', ebitda);
+    document.getElementById('ff-ebitda').textContent = '₹' + fmt(ebitda) + ' Cr';
+    const rows = [
+      ['DCF', dcfLo, dcfHi, 'dcf'],
+      ['Trading comps', c.q1 * ebitda, c.q3 * ebitda, ''],
+      ['Precedents', p.q1 * ebitda, p.q3 * ebitda, '']
+    ];
+    const min = Math.min(...rows.map(r => r[1])) * .85, max = Math.max(...rows.map(r => r[2])) * 1.08;
+    const pct = (x) => (x - min) / (max - min) * 100;
+    const ff = document.getElementById('ff');
+    if(!ff.children.length){
+      ff.innerHTML = rows.map(r => '<div class="ff-row"><div class="ff-label">' + r[0] + '</div><div class="ff-track"><div class="ff-bar ' + r[3] + '"><span class="lo"></span><span class="hi"></span></div></div></div>').join('');
+    }
+    [...ff.querySelectorAll('.ff-bar')].forEach((bar, i) => {
+      const [, lo, hi] = rows[i];
+      bar.style.left = pct(lo) + '%';
+      bar.style.width = Math.max(pct(hi) - pct(lo), .5) + '%';
+      bar.querySelector('.lo').textContent = fmt(lo);
+      bar.querySelector('.hi').textContent = fmt(hi);
+    });
+  }
+
   document.querySelectorAll('#dcf-inputs input').forEach(i => i.addEventListener('input', updateDcf));
   updateDcf();
+
+  // Market strip — data/market.json is refreshed by a scheduled GitHub Action
+  (function loadMarket(){
+    const sources = ['https://raw.githubusercontent.com/pra1608/pra1608.github.io/main/data/market.json', 'data/market.json'];
+    const tryNext = (i) => i >= sources.length ? Promise.reject() :
+      fetch(sources[i], {cache:'no-cache'}).then(r => r.ok ? r.json() : Promise.reject()).catch(() => tryNext(i + 1));
+    tryNext(0).then(data => {
+      const items = data && data.items ? data.items : {};
+      let shown = 0;
+      document.querySelectorAll('.mk[data-key]').forEach(el => {
+        const q = items[el.dataset.key];
+        if(!q || typeof q.value !== 'number'){ el.remove(); return; }
+        const key = el.dataset.key;
+        let val, chg;
+        if(key === 'gsec'){
+          val = q.value.toFixed(3) + '%';
+          chg = (q.change >= 0 ? '+' : '') + Math.round(q.change * 100) + ' bp';
+        } else {
+          const dp = key === 'usdinr' ? 2 : 1;
+          val = (key === 'usdinr' ? '₹' : '') + q.value.toLocaleString('en-IN', {minimumFractionDigits:dp, maximumFractionDigits:dp});
+          chg = (q.changePct >= 0 ? '+' : '') + q.changePct.toFixed(2) + '%';
+        }
+        const dir = q.change > 0 ? 'up' : q.change < 0 ? 'down' : 'flat';
+        const arrow = dir === 'up' ? '▲' : dir === 'down' ? '▼' : '■';
+        el.innerHTML = '<span class="mk-label">' + q.label + '</span><span class="mk-val">' + val + '</span><span class="mk-chg ' + dir + '">' + arrow + ' ' + chg + '</span>';
+        shown++;
+      });
+      if(!shown) return;
+      const updated = new Date(data.updated);
+      const ageH = (Date.now() - updated) / 36e5;
+      document.getElementById('mk-dot').classList.toggle('stale', ageH > 6);
+      document.getElementById('mk-asof').textContent = 'as of ' + updated.toLocaleString('en-IN', {
+        timeZone:'Asia/Kolkata', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'
+      }) + ' IST';
+      document.getElementById('market').classList.add('ready');
+    }).catch(() => {});
+  })();
+
+  // Research spotlight — schematic laser DED cross-section (2D explicit heat diffusion)
+  (function dedSim(){
+    const NX = 160, NY = 70, SUB = 22, LH = 5, LAYERS = 6, X0 = 22, X1 = 138;
+    const TOP0 = NY - SUB;                  // first substrate row (rows grow downward)
+    const idx = (x, y) => y * NX + x;
+    const T = new Float32Array(NX * NY), Tn = new Float32Array(NX * NY);
+    const solid = new Uint8Array(NX * NY), peak = new Float32Array(NX * NY);
+    const cv = document.getElementById('ded-canvas'), c2 = cv.getContext('2d');
+    const off = document.createElement('canvas'); off.width = NX; off.height = NY;
+    const octx = off.getContext('2d'), img = octx.createImageData(NX, NY);
+    const powerIn = document.getElementById('ded-power');
+    let mode = 'temp', laserX, dir, layer, done, hold, dilution, visible = true;
+
+    const TEMP = [[0,'#1D3D59'],[.25,'#2F6D67'],[.55,'#C9A24B'],[1,'#F4D58D'],[1.35,'#FFFFFF']];
+    const STRESS = [[-1,'#4C8C86'],[0,'#1D3D59'],[1,'#E08A6D']];
+    const hex = (h) => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16));
+    const ramp = (stops, v) => {
+      if(v <= stops[0][0]) return hex(stops[0][1]);
+      for(let i = 1; i < stops.length; i++){
+        if(v <= stops[i][0]){
+          const [a, ca] = stops[i - 1], [b, cb] = stops[i], t = (v - a) / (b - a);
+          const A = hex(ca), B = hex(cb);
+          return A.map((x, k) => x + (B[k] - x) * t);
+        }
+      }
+      return hex(stops[stops.length - 1][1]);
+    };
+    const css = (stops) => 'linear-gradient(90deg,' + stops.map(([v, c]) => c + ' ' + ((v - stops[0][0]) / (stops[stops.length - 1][0] - stops[0][0]) * 100) + '%').join(',') + ')';
+
+    function reset(){
+      T.fill(0); peak.fill(0); solid.fill(0);
+      for(let y = TOP0; y < NY; y++) for(let x = 0; x < NX; x++) solid[idx(x, y)] = 1;
+      laserX = X0; dir = 1; layer = 0; done = false; hold = 0; dilution = null;
+    }
+    const layerTop = () => TOP0 - (layer + 1) * LH;
+
+    function step(){
+      if(done){ if(--hold <= 0 && !prefersReduced) reset(); }
+      else {
+        // deposit the current layer under the nozzle
+        const top = layerTop();
+        for(let dx = -1; dx <= 1; dx++){
+          const x = Math.round(laserX) + dx;
+          if(x < X0 || x > X1) continue;
+          for(let y = top; y < top + LH; y++) solid[idx(x, y)] = 1;
+        }
+        // Gaussian heat source at the top of the new layer
+        const P = parseFloat(powerIn.value);
+        for(let y = top; y < Math.min(NY, top + 20); y++){
+          for(let x = Math.max(0, Math.round(laserX) - 8); x <= Math.min(NX - 1, Math.round(laserX) + 8); x++){
+            const i = idx(x, y);
+            if(!solid[i]) continue;
+            const r2 = ((x - laserX) ** 2) / 9 + ((y - top) ** 2) / (45 * Math.sqrt(P));
+            T[i] += .3 * P * Math.exp(-r2);
+          }
+        }
+        laserX += dir * .55;
+        if(laserX > X1 || laserX < X0){
+          if(layer === 0) dilution = dilution ?? 0;
+          layer++; dir = -dir; laserX = Math.max(X0, Math.min(X1, laserX));
+          if(layer >= LAYERS){ done = true; hold = 220; layer = LAYERS - 1; }
+        }
+      }
+      // diffusion between solid cells, convective loss at free surfaces, sink at the base
+      for(let s = 0; s < 3; s++){
+        for(let y = 0; y < NY; y++){
+          for(let x = 0; x < NX; x++){
+            const i = idx(x, y);
+            if(!solid[i]){ Tn[i] = 0; continue; }
+            let lap = 0, free = 0;
+            const nb = [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]];
+            for(const [nx, ny] of nb){
+              if(nx < 0 || nx >= NX || ny < 0){ free++; continue; }
+              if(ny >= NY){ lap += -T[i]; continue; }
+              const j = idx(nx, ny);
+              if(solid[j]) lap += T[j] - T[i]; else free++;
+            }
+            Tn[i] = T[i] + .22 * lap - .05 * free * T[i];
+          }
+        }
+        T.set(Tn);
+      }
+      // track peak temperature and layer-1 dilution
+      let sub = 0, dep = 0, pk = 0;
+      for(let i = 0; i < T.length; i++){
+        if(T[i] > peak[i]) peak[i] = T[i];
+        if(T[i] > pk) pk = T[i];
+        if(!done && layer === 0 && T[i] >= 1){ if(i >= TOP0 * NX) sub++; else dep++; }
+      }
+      if(!done && layer === 0 && sub + dep > 0){
+        const d = sub / (sub + dep);
+        dilution = dilution === null ? d : dilution * .97 + d * .03;
+      }
+      document.getElementById('ded-layer').textContent = (layer + 1) + ' / ' + LAYERS;
+      document.getElementById('ded-dil').textContent = dilution === null ? '—' : Math.round(dilution * 100) + '%';
+      if(dilution !== null){
+        const v = dilution < .05 ? ['Lack of fusion', '#E08A6D'] : dilution > .32 ? ['Excess dilution', '#E08A6D'] : ['Sound bond', '#5FB3A8'];
+        const el = document.getElementById('ded-verdict');
+        el.textContent = v[0]; el.style.color = v[1];
+      }
+      document.getElementById('ded-peak').textContent = done ? 'cooled' : (pk >= 1 ? 'molten' : 'below melt');
+    }
+
+    // Schematic residual stress: tensile near the free surface, compressive beneath,
+    // weighted by how hot each cell got (no thermal history, no stress).
+    function stressAt(x, y){
+      let top = 0;
+      while(top < NY && !solid[idx(x, top)]) top++;
+      const d = y - top;
+      const s = 1.3 * Math.exp(-d / 3) - .75 * (1 - Math.exp(-d / 3)) * Math.exp(-Math.max(0, d - 20) / 8);
+      return s * Math.min(1, peak[idx(x, y)] * 1.4);
+    }
+
+    function draw(){
+      const data = img.data;
+      for(let y = 0; y < NY; y++){
+        for(let x = 0; x < NX; x++){
+          const i = idx(x, y), o = i * 4;
+          if(!solid[i]){ data[o] = 11; data[o + 1] = 27; data[o + 2] = 41; data[o + 3] = 255; continue; }
+          const [r, g, b] = mode === 'temp' ? ramp(TEMP, T[i]) : ramp(STRESS, stressAt(x, y));
+          data[o] = r; data[o + 1] = g; data[o + 2] = b; data[o + 3] = 255;
+        }
+      }
+      octx.putImageData(img, 0, 0);
+      const W = cv.width, H = cv.height, sx = W / NX, sy = H / NY;
+      c2.imageSmoothingEnabled = true;
+      c2.drawImage(off, 0, 0, W, H);
+      // substrate interface
+      c2.strokeStyle = 'rgba(241,238,228,.25)'; c2.setLineDash([4, 4]);
+      c2.beginPath(); c2.moveTo(0, TOP0 * sy); c2.lineTo(W, TOP0 * sy); c2.stroke(); c2.setLineDash([]);
+      c2.fillStyle = 'rgba(241,238,228,.55)'; c2.font = Math.round(11 * sx / 4) + 'px "IBM Plex Mono", monospace';
+      c2.fillText('substrate', 6 * sx, (TOP0 + 4) * sy);
+      if(!done){
+        // nozzle and beam
+        const lx = laserX * sx, ty = layerTop() * sy;
+        const beam = c2.createLinearGradient(0, 0, 0, ty);
+        beam.addColorStop(0, 'rgba(244,213,141,0)'); beam.addColorStop(1, 'rgba(244,213,141,.85)');
+        c2.fillStyle = beam;
+        c2.beginPath(); c2.moveTo(lx - 1.5 * sx, ty - 14 * sy); c2.lineTo(lx + 1.5 * sx, ty - 14 * sy); c2.lineTo(lx + .4 * sx, ty); c2.lineTo(lx - .4 * sx, ty); c2.fill();
+        c2.fillStyle = '#9FB2C2';
+        c2.beginPath(); c2.moveTo(lx - 5 * sx, ty - 24 * sy); c2.lineTo(lx + 5 * sx, ty - 24 * sy); c2.lineTo(lx + 2 * sx, ty - 14 * sy); c2.lineTo(lx - 2 * sx, ty - 14 * sy); c2.fill();
+      }
+    }
+
+    function resize(){
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      cv.width = Math.round(cv.clientWidth * dpr); cv.height = Math.round(cv.clientHeight * dpr);
+      draw();
+    }
+    function setLegend(){
+      const temp = mode === 'temp';
+      document.getElementById('leg-ramp').style.background = css(temp ? TEMP : STRESS);
+      document.getElementById('leg-lo').textContent = temp ? 'Ambient' : 'Compressive';
+      document.getElementById('leg-hi').textContent = temp ? 'Melt+' : 'Tensile';
+    }
+    document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+      mode = b.dataset.mode;
+      document.querySelectorAll('.seg button').forEach(o => o.setAttribute('aria-pressed', o === b));
+      setLegend(); draw();
+    }));
+    const powerOut = document.getElementById('ded-power-out');
+    const syncPower = () => { powerOut.textContent = Math.round(powerIn.value * 100) + '%'; };
+    powerIn.addEventListener('input', syncPower); syncPower();
+    function fastForward(){ reset(); while(!done) step(); for(let k = 0; k < 400; k++) step(); draw(); }
+    document.getElementById('ded-replay').addEventListener('click', () => { prefersReduced ? fastForward() : reset(); });
+    // a new power setting restarts the build so layer-1 dilution reflects it
+    powerIn.addEventListener('change', () => { prefersReduced ? fastForward() : reset(); });
+
+    reset(); setLegend();
+    window.addEventListener('resize', resize);
+    if(prefersReduced){ fastForward(); resize(); return; }
+    resize();
+    new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(cv);
+    (function loop(){
+      if(visible){ step(); step(); draw(); }
+      requestAnimationFrame(loop);
+    })();
+  })();
 </script>
 </body>
 </html>

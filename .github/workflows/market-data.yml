@@ -1,0 +1,42 @@
+name: Market data
+
+on:
+  schedule:
+    # Hourly 09:37–15:37 IST (04:07–10:07 UTC), Monday–Friday
+    - cron: '7 4-10 * * 1-5'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scripts/fetch-market.mjs
+      - .github/workflows/market-data.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: market-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/fetch-market.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- data/market.json; then
+            echo "No change in market data"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add data/market.json
+          git commit -m "Update market data"
+          git pull --rebase origin main
+          git push
