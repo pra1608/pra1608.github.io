@@ -1,0 +1,12 @@
+{%- assign p = include.post -%}
+<a class="post-card" href="{{ p.url | relative_url }}" data-sector="{{ p.sector }}"
+   data-search="{{ p.title | append: ' ' | append: p.company | append: ' ' | append: p.ticker | append: ' ' | append: p.report.broker | append: ' ' | append: p.sector | downcase | escape }}">
+  <div class="pc-top">
+    <span class="eyebrow">{{ p.sector | default: 'Critique' }}</span>
+    {% if p.verdict %}<span class="verdict v-{{ p.verdict | slugify }}">{{ p.verdict }}</span>{% endif %}
+  </div>
+  <h3>{{ p.title }}</h3>
+  <p class="pc-meta">{{ p.company }}{% if p.report.broker %} · {{ p.report.broker }}{% endif %} · {{ p.date | date: '%-d %b %Y' }}</p>
+  <p class="pc-sum">{{ p.summary | default: p.excerpt | strip_html | truncatewords: 36 }}</p>
+  <span class="pc-cta">Read critique →</span>
+</a>
