@@ -1,0 +1,62 @@
+---
+layout: default
+---
+{%- assign r = page.report -%}
+{%- assign words = content | number_of_words -%}
+<article class="post wrap">
+  <a class="back" href="{{ '/blog/' | relative_url }}">← All critiques</a>
+
+  <header class="post-head">
+    <p class="eyebrow">{{ page.sector | default: 'Report critique' }}{% if page.ticker %} · {{ page.ticker }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%-d %b %Y' }}</time>
+      · {{ words | divided_by: 220 | plus: 1 }} min read
+      {% if page.verdict %}· <span class="verdict v-{{ page.verdict | slugify }}">{{ page.verdict }}</span>{% endif %}
+    </p>
+  </header>
+
+  {% if r %}
+  <section class="report-card" aria-label="Report under review">
+    <div class="rc-item"><span class="k">Company</span><span class="v">{{ page.company }}</span></div>
+    <div class="rc-item"><span class="k">Report by</span><span class="v">{% if r.link %}<a href="{{ r.link }}" target="_blank" rel="noopener">{{ r.broker }} <i class="fa-solid fa-arrow-up-right-from-square"></i></a>{% else %}{{ r.broker }}{% endif %}</span></div>
+    {% if r.date %}<div class="rc-item"><span class="k">Report date</span><span class="v">{{ r.date | date: '%-d %b %Y' }}</span></div>{% endif %}
+    {% if r.rating %}<div class="rc-item"><span class="k">Their rating</span><span class="v">{{ r.rating }}</span></div>{% endif %}
+    {% if r.target %}<div class="rc-item"><span class="k">Their target</span><span class="v">{{ r.currency | default: '₹' }}{{ r.target }}</span></div>{% endif %}
+    {% if r.target and r.price %}
+      {%- assign upside = r.target | minus: r.price | times: 100.0 | divided_by: r.price | round: 1 -%}
+      <div class="rc-item"><span class="k">Implied upside</span><span class="v {% if upside >= 0 %}up{% else %}down{% endif %}">{% if upside >= 0 %}+{% endif %}{{ upside }}%</span><span class="sub">vs {{ r.currency | default: '₹' }}{{ r.price }} at report</span></div>
+    {% endif %}
+  </section>
+  {% endif %}
+
+  {% if page.scores %}
+  <section class="scorecard" aria-label="My scorecard">
+    <h2 class="mini">My scorecard</h2>
+    {% for s in page.scores %}
+    <div class="score-row">
+      <span class="score-k">{{ s[0] }}</span>
+      <span class="pips" role="img" aria-label="{{ s[1] }} out of 5">{% for i in (1..5) %}<i class="{% if i <= s[1] %}on{% endif %}"></i>{% endfor %}</span>
+      <span class="score-v">{{ s[1] }}/5</span>
+    </div>
+    {% endfor %}
+  </section>
+  {% endif %}
+
+  {% if page.summary %}<p class="tldr"><b>Bottom line.</b> {{ page.summary }}</p>{% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {% if page.tags.size > 0 %}
+  <p class="tags">{% for t in page.tags %}<span class="chip">{{ t }}</span>{% endfor %}</p>
+  {% endif %}
+
+  {% include disclaimer.html %}
+
+  <nav class="post-nav">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}"><span>← Older</span>{{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}"><span>Newer →</span>{{ page.next.title }}</a>{% endif %}
+  </nav>
+</article>

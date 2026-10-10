@@ -1,0 +1,16 @@
+---
+layout: null
+---
+[{% for p in site.posts limit: 6 %}
+  {
+    "title": {{ p.title | jsonify }},
+    "url": {{ p.url | relative_url | jsonify }},
+    "date": {{ p.date | date: '%-d %b %Y' | jsonify }},
+    "company": {{ p.company | jsonify }},
+    "broker": {{ p.report.broker | jsonify }},
+    "sector": {{ p.sector | jsonify }},
+    "verdict": {{ p.verdict | jsonify }},
+    "verdictSlug": {{ p.verdict | slugify | jsonify }},
+    "summary": {{ p.summary | default: p.excerpt | strip_html | truncatewords: 36 | jsonify }}
+  }{% unless forloop.last %},{% endunless %}{% endfor %}
+]

@@ -1,0 +1,66 @@
+---
+layout: default
+title: Research Report Critiques
+description: Independent critiques of sell-side equity research reports — assumptions, models and valuation, examined by a valuation professional.
+---
+<section class="blog-hero wrap">
+  <p class="eyebrow">Blog</p>
+  <h1>Research Report Critiques</h1>
+  <p class="lede">Sell-side reports, read the way a valuer reads them: are the assumptions defensible, does the model hold together, and is the target price earned? Each critique scores the report on four dimensions.</p>
+  <div class="rubric">
+    <div><b>Assumptions</b><span>Growth, margins and capex vs history and peers</span></div>
+    <div><b>Valuation method</b><span>Method fit, WACC, terminal value, multiples</span></div>
+    <div><b>Risk disclosure</b><span>Downside cases and what could break the thesis</span></div>
+    <div><b>Clarity</b><span>Can a reader trace the numbers to the target?</span></div>
+  </div>
+</section>
+
+<section class="wrap">
+  {% if site.posts.size > 0 %}
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="Search company, broker, ticker…" aria-label="Search critiques">
+    <div class="filters" role="group" aria-label="Filter by sector">
+      <button type="button" class="chip-btn" aria-pressed="true" data-sector="">All</button>
+      {%- assign sectors = site.posts | map: 'sector' | compact | uniq | sort -%}
+      {% for s in sectors %}<button type="button" class="chip-btn" aria-pressed="false" data-sector="{{ s }}">{{ s }}</button>{% endfor %}
+    </div>
+  </div>
+  <div class="post-grid" id="posts">
+    {% for post in site.posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+  <p class="empty" id="no-match" hidden>No critiques match that search.</p>
+  {% else %}
+  <div class="empty-state">
+    <i class="fa-solid fa-pen-nib"></i>
+    <h2>First critique coming soon</h2>
+    <p>Follow along via <a href="{{ '/blog/feed.xml' | relative_url }}">RSS</a> or <a href="https://in.linkedin.com/in/prakhar-jain-842423119" target="_blank" rel="noopener">LinkedIn</a>.</p>
+  </div>
+  {% endif %}
+</section>
+
+<script>
+  (function(){
+    const q = document.getElementById('q');
+    if(!q) return;
+    const cards = [...document.querySelectorAll('.post-card')];
+    const btns = [...document.querySelectorAll('.chip-btn')];
+    let sector = '';
+    function apply(){
+      const term = q.value.trim().toLowerCase();
+      let shown = 0;
+      cards.forEach(c => {
+        const ok = (!sector || c.dataset.sector === sector) && (!term || c.dataset.search.includes(term));
+        c.hidden = !ok; if(ok) shown++;
+      });
+      document.getElementById('no-match').hidden = shown > 0;
+    }
+    q.addEventListener('input', apply);
+    btns.forEach(b => b.addEventListener('click', () => {
+      sector = b.dataset.sector;
+      btns.forEach(o => o.setAttribute('aria-pressed', o === b));
+      apply();
+    }));
+  })();
+</script>

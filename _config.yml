@@ -1,0 +1,33 @@
+title: Prakhar Jain
+description: Valuation professional. Critiques of equity research reports — assumptions, models and valuation, examined.
+url: https://pra1608.github.io
+author: Prakhar Jain
+lang: en
+
+permalink: /blog/:year/:title/
+timezone: Asia/Kolkata
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: blog/feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - scripts/
+  - libs/font-awesome/less/
+  - libs/font-awesome/scss/
