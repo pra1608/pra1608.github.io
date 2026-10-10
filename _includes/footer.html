@@ -1,0 +1,31 @@
+<footer>
+  <div class="wrap">
+    <p>© {{ site.time | date: '%Y' }} Prakhar Jain</p>
+    <p><a href="{{ '/blog/feed.xml' | relative_url }}">RSS</a> · <a href="{{ '/' | relative_url }}">Home</a></p>
+  </div>
+</footer>
+<script>
+  // Theme toggle (shares the 'theme' key with the homepage)
+  const themeBtn = document.getElementById('theme-toggle');
+  function syncThemeIcon(){
+    const light = document.documentElement.dataset.theme === 'light';
+    themeBtn.innerHTML = light ? '<i class="fa-solid fa-moon"></i>' : '<i class="fa-solid fa-sun"></i>';
+  }
+  themeBtn.addEventListener('click', () => {
+    const light = document.documentElement.dataset.theme !== 'light';
+    if(light) document.documentElement.dataset.theme = 'light';
+    else delete document.documentElement.dataset.theme;
+    try{ localStorage.setItem('theme', light ? 'light' : 'dark'); }catch(e){}
+    syncThemeIcon();
+  });
+  syncThemeIcon();
+
+  // Reading progress
+  const progress = document.getElementById('progress');
+  function onScroll(){
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = 'scaleX(' + (max > 0 ? window.scrollY / max : 0) + ')';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+</script>
