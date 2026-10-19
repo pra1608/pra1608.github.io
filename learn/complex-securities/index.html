@@ -1,0 +1,277 @@
+---
+layout: default
+title: Complex Securities Valuation — free course
+description: A free, Socratic course on complex securities valuation that runs inside Claude. Option theory, OPM / backsolve / PWERM, term sheets, DLOM, convertibles, SAFEs, warrants, ASC 718 / IFRS 2 and earnouts, with Excel builds and problem ladders.
+---
+<section class="course-hero wrap">
+  <p class="eyebrow">Free course · Runs in Claude</p>
+  <h1>Complex Securities Valuation</h1>
+  <p class="lede">A Socratic course that turns Claude into a Big 4 valuation director and tutor. It takes you from option theory to OPM backsolves, term sheets, earnouts and audit review, one question at a time. You build an Excel toolkit along the way and practise on realistic engagement cases.</p>
+  <div class="ctas">
+    <a class="btn solid" href="complex-securities-tutor.zip" download><i class="fa-solid fa-download"></i> Download the skill</a>
+    <button class="btn ghost" type="button" id="copy-prompt"><i class="fa-regular fa-copy"></i> Copy as a prompt</button>
+    <a class="btn ghost" href="#diagnostic"><i class="fa-solid fa-list-check"></i> Take the diagnostic</a>
+  </div>
+  <div class="facts">
+    <div><b>14</b><span>modules, diagnostic to capstone</span></div>
+    <div><b>4</b><span>problem levels per module, L1 to L4</span></div>
+    <div><b>9</b><span>Excel tools you build yourself</span></div>
+    <div><b>3</b><span>frameworks: US GAAP, IFRS, Ind AS</span></div>
+  </div>
+</section>
+
+<section class="c-section wrap">
+  <h2>How it works</h2>
+  <p class="sub">The course is a Claude Skill: a set of teaching instructions. Claude runs the lessons, quizzes and cases, adapting to your answers.</p>
+  <div class="steps3">
+    <div class="step"><span class="n">01</span><h3>Add it to Claude</h3><p>Upload the skill, or paste the prompt into a Claude Project or chat. See <a href="#setup" style="color:var(--brass)">setup</a> below.</p></div>
+    <div class="step"><span class="n">02</span><h3>Tell it about you</h3><p>Say <em>"Start the complex securities course"</em>. The tutor asks about your role, frameworks and goals, then runs a short diagnostic.</p></div>
+    <div class="step"><span class="n">03</span><h3>Learn by solving</h3><p>Each module moves from intuition to formulas, a worked example, an Excel build, a quiz and a four-level problem ladder.</p></div>
+  </div>
+</section>
+
+<section class="c-section wrap">
+  <h2>Syllabus</h2>
+  <p class="sub">The default path. You can skip, reorder or go deeper at any time, for example <em>"JUMP 6"</em> or <em>"go deeper on OPM backsolve"</em>.</p>
+  <div class="modules">
+    <details><summary><span class="mn">M0</span><span class="mt">Diagnostic and orientation</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>8–10 question diagnostic on options, capital structure and accounting</li><li>The landscape: clients, standards, and how an engagement runs from request list to audit review</li></ul></details>
+    <details><summary><span class="mn">M1</span><span class="mt">Option theory foundations</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Payoff diagrams, intrinsic vs time value, put-call parity, moneyness</li><li>Risk-neutral valuation and why WACC doesn't belong inside an option model</li><li>Every security as a bundle of options</li></ul></details>
+    <details><summary><span class="mn">M2</span><span class="mt">Black-Scholes-Merton in practice</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Where each input comes from: underlying, strike, term, volatility (peer sets, look-back, de-levering), risk-free rate, dividends</li><li>Greeks for valuers, and the reviewer challenges on each input</li></ul></details>
+    <details><summary><span class="mn">M3</span><span class="mt">Lattice models</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Building a CRR binomial tree; early exercise and path features</li><li>When a lattice beats Black-Scholes: employee options, callable / puttable features, convertible bonds</li></ul></details>
+    <details><summary><span class="mn">M4</span><span class="mt">Monte Carlo simulation</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>GBM, Cholesky correlation, path counts, convergence and standard error</li><li>TSR and price-hurdle awards, earnouts, Asian and barrier features</li><li>Making a Monte Carlo in Excel auditable</li></ul></details>
+    <details><summary><span class="mn">M5</span><span class="mt">Capital structure and term sheets <span class="tag">Extra depth</span></span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Reading a term sheet like a valuer: liquidation preferences, participation and caps, seniority, conversion, anti-dilution, dividends, redemption</li><li>Building the waterfall and breakpoint analysis</li></ul></details>
+    <details><summary><span class="mn">M6</span><span class="mt">Equity allocation methods <span class="tag">Extra depth</span></span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Current Value Method and when it's acceptable</li><li>OPM: breakpoints, call spreads, allocation per class; backsolve to the latest round and its traps</li><li>PWERM and hybrid methods; AICPA cheap-stock guide expectations before an IPO</li></ul></details>
+    <details><summary><span class="mn">M7</span><span class="mt">Discounts and premiums</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>DLOM: Chaffe protective put, Finnerty, Asian put, Longstaff, restricted stock and pre-IPO studies</li><li>Control premiums and DLOC under ASC 820 unit of account</li></ul></details>
+    <details><summary><span class="mn">M8</span><span class="mt">Preferred stock and convertibles</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Redeemable, participating and convertible preferred</li><li>Convertible notes and SAFEs: discount, cap, MFN; host plus embedded derivative vs fair value option</li><li>Convertible bonds: lattice approach, credit spread calibration, bifurcation (ASC 815 / IFRS 9)</li></ul></details>
+    <details><summary><span class="mn">M9</span><span class="mt">Warrants and other derivatives</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Down-round features, penny warrants, dilution adjustment</li><li>Liability vs equity classification (ASC 480 / 815-40, IAS 32) and why it changes valuation frequency</li><li>SPAC warrants and earnout shares as a case study</li></ul></details>
+    <details><summary><span class="mn">M10</span><span class="mt">Share-based compensation</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Service, performance and market conditions under ASC 718 / IFRS 2</li><li>Expected term, forfeitures, private-company volatility</li><li>Profits interests, RSUs, PSUs with TSR modifiers; modifications and repricings</li></ul></details>
+    <details><summary><span class="mn">M11</span><span class="mt">Contingent consideration and earnouts</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Scenario-based vs option-pricing / Monte Carlo approaches (ASC 805 / IFRS 3)</li><li>Linear vs non-linear payoffs, metric risk premium, counterparty credit risk</li><li>Remeasurement and how it flows to the P&amp;L</li></ul></details>
+    <details><summary><span class="mn">M12</span><span class="mt">Calibration, reconciliation and audit review</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>Calibration at inception and each measurement date</li><li>Reconciling OPM / PWERM results with DCF and market approaches</li><li>What audit specialists check, and how to write a defensible memo</li></ul></details>
+    <details><summary><span class="mn">M13</span><span class="mt">Capstone engagement</span><i class="fa-solid fa-chevron-right chev"></i></summary><ul><li>A full mock engagement, such as a Series C 409A plus ASC 718 grant valuation with a convertible note and a pending acquisition with an earnout</li><li>You build the model and memo; the tutor plays engagement manager and audit reviewer</li></ul></details>
+  </div>
+</section>
+
+<section class="c-section wrap">
+  <h2>Every module follows the same loop</h2>
+  <p class="sub">Intuition before formulas, and nothing moves on until you've tried it yourself.</p>
+  <div class="loop">
+    <span>Why it matters on the job</span><span>Intuition first</span><span>Concepts and formulas</span><span>Real-life use case</span><span>Worked example</span><span class="pause">Check for understanding</span><span class="pause">Excel build</span><span>Big 4 nuances</span><span class="pause">Module quiz</span><span class="pause">Problem ladder</span><span>Reference notes</span><span>Progress log</span>
+  </div>
+  <p class="loop-note"><i class="fa-solid fa-circle-pause"></i> Teal steps wait for your answer before continuing.</p>
+</section>
+
+<section class="c-section wrap">
+  <div class="two">
+    <div>
+      <h2 style="font-size:1.5rem; margin-bottom:1rem;">Problem ladder</h2>
+      <table class="tbl">
+        <tr><th>Level</th><th>What it looks like</th></tr>
+        <tr><td>L1 Moderate</td><td>One method, clean inputs. Compute and tie out in Excel.</td></tr>
+        <tr><td>L2 Applied</td><td>Messy or conflicting data; pick and justify the inputs.</td></tr>
+        <tr><td>L3 Advanced</td><td>Two defensible methods disagree; recommend, reconcile, run sensitivities.</td></tr>
+        <tr><td>L4 Engagement</td><td>Client email, deadline, auditor challenge; deliver model, memo and responses.</td></tr>
+      </table>
+      <p class="loop-note">Each level is graded out of 10. Score 7 or more to move up.</p>
+    </div>
+    <div>
+      <h2 style="font-size:1.5rem; margin-bottom:1rem;">Commands</h2>
+      <table class="tbl">
+        <tr><th>Say</th><th>To</th></tr>
+        <tr><td>NEXT</td><td>Move to the next step</td></tr>
+        <tr><td>DEEPER / SIMPLER</td><td>Change the level of the explanation</td></tr>
+        <tr><td>EXCEL</td><td>Show the Excel build for the topic</td></tr>
+        <tr><td>NOTES</td><td>Get the module's reference notes</td></tr>
+        <tr><td>QUIZ ME</td><td>Quiz on everything so far, weighted to weak spots</td></tr>
+        <tr><td>CASE L1–L4</td><td>Get an extra problem at a chosen level</td></tr>
+        <tr><td>REVIEWER</td><td>Have a tough audit specialist review your answer</td></tr>
+        <tr><td>RECAP / TRACKER</td><td>Summary, progress table and mistake bank</td></tr>
+        <tr><td>JUMP n</td><td>Go to module n</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="c-section wrap">
+  <h2>The Excel toolkit you'll build</h2>
+  <p class="sub">Laid out Cover → Inputs → Calc → Output → Sensitivity → Checks, with integrity checks a reviewer expects.</p>
+  <div class="toolkit">
+    <span class="chip">BSM calculator</span><span class="chip">Binomial lattice</span><span class="chip">Monte Carlo engine</span><span class="chip">OPM / backsolve allocator</span><span class="chip">PWERM / hybrid model</span><span class="chip">DLOM calculator</span><span class="chip">Earnout model</span><span class="chip">SBC award template</span><span class="chip">Capstone model</span>
+  </div>
+</section>
+
+<section class="c-section wrap" id="diagnostic">
+  <h2>Try the diagnostic</h2>
+  <p class="sub">Ten questions in the style of Module 0. Your score suggests where to start the course. Nothing is saved or sent anywhere.</p>
+  <div class="quiz" id="quiz" aria-live="polite"></div>
+</section>
+
+<section class="c-section wrap" id="setup">
+  <h2>Set it up</h2>
+  <p class="sub">Pick whichever way you use Claude. Menu names can change slightly between versions.</p>
+  <div class="setup-tabs" role="tablist" aria-label="Setup options">
+    <button role="tab" id="st-skill" aria-controls="sp-skill" aria-selected="true">Claude app (Skill)</button>
+    <button role="tab" id="st-project" aria-controls="sp-project" aria-selected="false" tabindex="-1">Claude Project</button>
+    <button role="tab" id="st-code" aria-controls="sp-code" aria-selected="false" tabindex="-1">Claude Code</button>
+  </div>
+  <div class="setup-panel" role="tabpanel" id="sp-skill" aria-labelledby="st-skill">
+    <ol>
+      <li><b>Download</b> <a href="complex-securities-tutor.zip" download style="color:var(--brass)">complex-securities-tutor.zip</a>. Don't unzip it.</li>
+      <li>In Claude, open <b>Settings → Capabilities</b> and find <b>Skills</b>. Turn on code execution if Claude asks for it.</li>
+      <li>Choose <b>Upload skill</b> and select the zip.</li>
+      <li>Start a new chat and say:
+        <div class="starter"><span>Start the complex securities course</span><button class="copy-mini" data-copy="Start the complex securities course" aria-label="Copy"><i class="fa-regular fa-copy"></i></button></div>
+      </li>
+    </ol>
+  </div>
+  <div class="setup-panel" role="tabpanel" id="sp-project" aria-labelledby="st-project" hidden>
+    <ol>
+      <li>Create a new <b>Project</b> in Claude, for example "Complex Securities Course".</li>
+      <li>Click <b>Copy as a prompt</b> (button below) and paste it into the Project's <b>instructions</b>.</li>
+      <li>Start a chat in the Project and say <code>Start the complex securities course</code>.</li>
+      <li>At the end of each module, type <code>TRACKER</code> and save the block into the Project's files, so the next chat picks up where you left off.</li>
+    </ol>
+    <p><button class="btn ghost" type="button" data-copy-prompt><i class="fa-regular fa-copy"></i> Copy as a prompt</button></p>
+    <p class="note">No Projects? Paste the prompt as your first message in any Claude chat.</p>
+  </div>
+  <div class="setup-panel" role="tabpanel" id="sp-code" aria-labelledby="st-code" hidden>
+    <ol>
+      <li>Unzip <a href="complex-securities-tutor.zip" download style="color:var(--brass)">complex-securities-tutor.zip</a> into <code>~/.claude/skills/</code>, so you have <code>~/.claude/skills/complex-securities-tutor/SKILL.md</code>.</li>
+      <li>Start Claude Code and say <code>Start the complex securities course</code>.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="c-section wrap">
+  <aside class="disclaimer">
+    <i class="fa-solid fa-scale-balanced"></i>
+    <p>Educational material, designed by Prakhar Jain with Claude. The tutor is an AI and can make mistakes: verify standards, paragraph references, safe harbours and market practice against primary sources and your firm's methodology. Not affiliated with or endorsed by any firm or standard setter, and not professional, accounting, tax or investment advice. Free to use and adapt.</p>
+  </aside>
+</section>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  (function(){
+    const toastEl = document.getElementById('toast');
+    let timer;
+    function toast(msg){
+      toastEl.textContent = msg; toastEl.classList.add('show');
+      clearTimeout(timer); timer = setTimeout(() => toastEl.classList.remove('show'), 2400);
+    }
+    function copy(text, done){
+      navigator.clipboard.writeText(text).then(() => toast(done)).catch(() => toast('Copy failed. Download the skill instead.'));
+    }
+
+    // Copy the whole course prompt (generated from the skill by scripts/package-skill.py)
+    let promptText = null;
+    function copyPrompt(){
+      const go = (t) => copy(t, 'Course prompt copied. Paste it into Claude.');
+      if(promptText) return go(promptText);
+      fetch('course-prompt.txt').then(r => r.ok ? r.text() : Promise.reject())
+        .then(t => { promptText = t; go(t); })
+        .catch(() => toast('Could not load the prompt. Download the skill instead.'));
+    }
+    document.getElementById('copy-prompt').addEventListener('click', copyPrompt);
+    document.querySelectorAll('[data-copy-prompt]').forEach(b => b.addEventListener('click', copyPrompt));
+    document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => copy(b.dataset.copy, 'Copied')));
+
+    // Setup tabs
+    const tabs = [...document.querySelectorAll('.setup-tabs [role=tab]')];
+    function select(tab){
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => select(t));
+      t.addEventListener('keydown', (e) => {
+        const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if(!step) return;
+        const next = tabs[(i + step + tabs.length) % tabs.length]; select(next); next.focus();
+      });
+    });
+
+    // Diagnostic
+    const Q = [
+      { topic:'Option theory · M1', q:'A call option has S = 100 and K = 100. Which change, on its own, increases the call’s value?',
+        opts:['A higher expected dividend yield','Higher volatility of the underlying','A lower risk-free rate','A shorter time to expiry'], a:1,
+        why:'A call’s payoff is limited on the downside and open on the upside, so more volatility raises its value. Higher dividends, lower rates and a shorter term all reduce a call’s value.' },
+      { topic:'Put-call parity · M1', q:'S = 100, K = 100, r = 5% (continuous), T = 1 year, and the European call is worth 10.45. What is the matching European put worth?',
+        opts:['10.45','4.88','5.57','15.33'], a:2,
+        why:'Put-call parity: P = C − S + K·e<sup>−rT</sup> = 10.45 − 100 + 100 × e<sup>−0.05</sup> = 10.45 − 100 + 95.12 = <b>5.57</b>.' },
+      { topic:'Risk-neutral valuation · M1', q:'Why does a Black-Scholes or lattice model discount at the risk-free rate instead of a WACC?',
+        opts:['Because options are risk-free instruments','Because the expected payoff is taken under risk-neutral probabilities, which already price the risk; a risk-adjusted rate would count it twice','Because WACC applies only to debt','Because standards prohibit WACC for private companies'], a:1,
+        why:'The model replicates the option with the underlying and borrowing, so the risk sits in the risk-neutral probabilities (drift = r). Discounting those expectations at WACC would double-count risk.' },
+      { topic:'Securities as options · M1', q:'For a company with zero-coupon debt, shareholders’ equity can be viewed as:',
+        opts:['A put on the debt','A call on enterprise value with a strike equal to the debt’s face value','A forward contract on the assets','Riskless debt plus a call'], a:1,
+        why:'At maturity, equity holders receive max(V − D, 0): a call on the firm’s value struck at the face value of debt. This Merton view is the root of the OPM.' },
+      { topic:'Term sheets · M5', q:'Series A invested $10m for 25% of the company (as-converted) with a 1x non-participating preference. The company is sold for $20m. What does Series A receive?',
+        opts:['$5m','$7.5m','$10m','$12.5m'], a:2,
+        why:'Non-participating preferred takes the greater of its preference ($10m) or converting (25% × $20m = $5m). It keeps the $10m preference, and common shares the remaining $10m.' },
+      { topic:'Breakpoints · M5', q:'Same Series A. Above what exit value would Series A choose to convert to common?',
+        opts:['$10m','$25m','$40m','$50m'], a:2,
+        why:'Indifference: 25% × V = $10m → V = $40m. Above $40m, converting beats the preference. This conversion point is exactly the kind of breakpoint an OPM is built around.' },
+      { topic:'OPM · M6', q:'In an Option Pricing Method allocation, what is a “breakpoint”?',
+        opts:['The date the next financing round closes','An equity value at which the way each extra dollar is shared between classes changes','The strike price of employee options only','The point at which the company breaches a debt covenant'], a:1,
+        why:'Breakpoints mark where a new class starts to participate (preferences paid, options in the money, preferred converting). The OPM values a call spread between each pair of breakpoints and splits it by the participation share in that band.' },
+      { topic:'Allocation methods · M6', q:'A startup has an IPO process under way that could close within 12 months, alongside a plausible M&A exit. Which allocation approach does the AICPA guide generally favour?',
+        opts:['Current Value Method only','OPM on its own','PWERM or a hybrid method, weighting the foreseeable exit scenarios','An asset approach'], a:2,
+        why:'When near-term liquidity events are reasonably foreseeable, scenario-based PWERM, or a hybrid with an OPM for the stay-private scenario, captures their differing payoffs. CVM is usually reserved for when a liquidity event is imminent or the company is at a very early stage.' },
+      { topic:'DLOM · M7', q:'The Chaffe protective-put approach estimates DLOM as:',
+        opts:['A fixed 25–35% from restricted stock studies','The price of an at-the-money put over the expected time to liquidity, as a percentage of the share value','The difference between the OPM and PWERM values','The control premium multiplied by minus one'], a:1,
+        why:'A holder who could buy an at-the-money put for the holding period would lock in liquidity at today’s value, so the put’s cost proxies the discount. Reviewers will check the volatility and term you use.' },
+      { topic:'Share-based compensation · M10', q:'Under ASC 718 and IFRS 2, how is a market condition (for example a TSR hurdle) on an award treated?',
+        opts:['Ignored at grant, with expense recognised only if the hurdle is met','Reflected in the grant-date fair value (often via Monte Carlo), with expense recognised if service is rendered even if the hurdle is never met','Treated the same as a performance condition, with expense trued up','Valued at intrinsic value each reporting date'], a:1,
+        why:'Market conditions are built into grant-date fair value, typically with Monte Carlo. As long as the requisite service is provided, the expense is not reversed if the market condition fails, unlike a performance condition.' }
+    ];
+    const box = document.getElementById('quiz');
+    let i = 0, score = 0;
+    const missed = [];
+    function render(){
+      if(i >= Q.length) return result();
+      const item = Q[i];
+      box.innerHTML =
+        '<div class="q-progress"><span>Question ' + (i + 1) + ' of ' + Q.length + '</span><span>Score ' + score + '</span></div>' +
+        '<div class="q-bar"><i style="width:' + (i / Q.length * 100) + '%"></i></div>' +
+        '<span class="q-topic">' + item.topic + '</span>' +
+        '<p class="q-text">' + item.q + '</p>' +
+        '<div class="q-opts">' + item.opts.map((o, k) => '<button type="button" class="q-opt" data-k="' + k + '">' + String.fromCharCode(65 + k) + '. ' + o + '</button>').join('') + '</div>' +
+        '<div id="q-after"></div>';
+      box.querySelectorAll('.q-opt').forEach(b => b.addEventListener('click', () => answer(+b.dataset.k)));
+    }
+    function answer(k){
+      const item = Q[i], ok = k === item.a;
+      if(ok) score++; else missed.push(item.topic);
+      box.querySelectorAll('.q-opt').forEach(b => {
+        b.disabled = true;
+        const kk = +b.dataset.k;
+        if(kk === item.a) b.classList.add('right');
+        else if(kk === k) b.classList.add('wrong');
+      });
+      document.getElementById('q-after').innerHTML =
+        '<div class="q-explain"><b>' + (ok ? 'Correct.' : 'Not quite.') + '</b> ' + item.why + '</div>' +
+        '<div class="q-nav"><button type="button" class="btn solid" id="q-next">' + (i === Q.length - 1 ? 'See result' : 'Next question') + ' →</button></div>';
+      const nextBtn = document.getElementById('q-next');
+      nextBtn.addEventListener('click', () => { i++; render(); box.querySelector('.q-opt, .btn')?.focus(); });
+      nextBtn.focus();
+    }
+    function result(){
+      const pct = score / Q.length;
+      const advice = pct >= .8
+        ? ['Strong foundations.', 'You could ask the tutor to <code>JUMP 5</code> after a quick pre-check, and spend your time on term sheets and allocation.']
+        : pct >= .5
+        ? ['Good base, with gaps.', 'Start at Module 1 but move quickly; the tutor will speed up where you score well and slow down on the areas below.']
+        : ['Start from the beginning.', 'Module 1 builds option intuition from your DCF knowledge, so everything after it lands properly.'];
+      box.innerHTML =
+        '<div class="q-result"><span class="q-topic">Diagnostic complete</span>' +
+        '<div class="score">' + score + ' / ' + Q.length + '</div>' +
+        '<h3>' + advice[0] + '</h3><p>' + advice[1] + '</p>' +
+        (missed.length ? '<p>Topics to review:</p><ul>' + missed.map(m => '<li>' + m + '</li>').join('') + '</ul>' : '') +
+        '<div class="ctas" style="margin-top:1rem"><a class="btn solid" href="#setup">Start the full course →</a><button type="button" class="btn ghost" id="q-retry">Retake</button></div></div>';
+      document.getElementById('q-retry').addEventListener('click', () => { i = 0; score = 0; missed.length = 0; render(); });
+    }
+    render();
+  })();
+</script>

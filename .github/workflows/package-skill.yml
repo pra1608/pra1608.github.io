@@ -1,0 +1,32 @@
+name: Package course skill
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - _skills/**
+      - scripts/package-skill.py
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/package-skill.py
+      - name: Commit if changed
+        run: |
+          if git diff --quiet -- learn/complex-securities; then
+            echo "Package already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
+          git add learn/complex-securities
+          git commit -m "Repackage complex securities skill"
+          git pull --rebase origin main
+          git push
