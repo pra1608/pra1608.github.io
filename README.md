@@ -22,3 +22,14 @@ The course page is `learn/complex-securities/index.html`. The tutor itself is th
 Edit `SKILL.md` (on GitHub or locally) and commit to `main`. The **Package course skill** workflow rebuilds
 `learn/complex-securities/complex-securities-tutor.zip` and `course-prompt.txt` automatically.
 Locally you can run `python3 scripts/package-skill.py` instead.
+
+## Résumé requests
+
+The résumé is no longer public. "Request Résumé" opens a form whose answers are emailed to
+prakharjain.oist@gmail.com by [FormSubmit](https://formsubmit.co) (free, no account).
+
+- **First time only:** FormSubmit sends an "Activate form" email after the first request. Click it,
+  or requests won't be delivered.
+- **To approve:** reply to the request email (the reply goes to the requester) with the PDF attached,
+  or with a Google Drive link shared only with their email address.
+- **Your log:** search your inbox for "Résumé request".

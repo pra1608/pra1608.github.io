@@ -181,7 +181,7 @@
   .btn{
     font-family:'IBM Plex Mono', monospace; font-size:.82rem; letter-spacing:.04em;
     padding:.85rem 1.4rem; border-radius:2px; text-transform:uppercase;
-    border:1px solid var(--brass); transition:all .25s ease;
+    border:1px solid var(--brass); transition:all .25s ease; background:none; cursor:pointer;
   }
   .btn.solid{ background:var(--brass); color:var(--ink); }
   .btn.solid:hover{ background:transparent; color:var(--brass); }
@@ -491,6 +491,37 @@
   .crit-empty i{ color:var(--brass); font-size:1.4rem; margin-bottom:.7rem; display:block; }
   .crit-empty b{ color:var(--paper); font-family:'Fraunces', serif; font-size:1.2rem; display:block; margin-bottom:.3rem; }
 
+  /* Résumé request dialog */
+  #resume-dialog{
+    width:min(560px, calc(100vw - 2rem)); max-height:calc(100vh - 2rem); margin:auto; padding:0;
+    background:var(--ink-2); color:var(--paper); border:1px solid var(--brass); border-radius:4px;
+  }
+  #resume-dialog::backdrop{ background:rgba(5,14,22,.72); backdrop-filter:blur(3px); }
+  .rd-inner{ padding:1.7rem 1.8rem 1.6rem; }
+  .rd-head{ display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; }
+  .rd-head h3{ font-size:1.4rem; margin:.3rem 0 .4rem; }
+  .rd-close{ background:none; border:1px solid var(--line); color:var(--muted); width:34px; height:34px; border-radius:4px; cursor:pointer; flex-shrink:0; }
+  .rd-close:hover{ color:var(--brass); border-color:var(--brass); }
+  .rd-sub{ color:var(--muted); font-size:.9rem; margin-bottom:1.3rem; }
+  .rd-grid{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem 1rem; }
+  .rd-grid .full{ grid-column:1 / -1; }
+  @media (max-width:520px){ .rd-grid{ grid-template-columns:1fr; } }
+  .rd-field label{ display:block; font-family:'IBM Plex Mono', monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; color:var(--brass); margin-bottom:.3rem; }
+  .rd-field input, .rd-field select, .rd-field textarea{
+    width:100%; background:var(--ink); border:1px solid var(--line); color:var(--paper);
+    border-radius:3px; padding:.6rem .7rem; font:inherit; font-size:.92rem;
+  }
+  .rd-field textarea{ resize:vertical; min-height:72px; }
+  .rd-field input:focus, .rd-field select:focus, .rd-field textarea:focus{ outline:none; border-color:var(--brass); }
+  .rd-honey{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+  .rd-foot{ display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap; margin-top:1.3rem; }
+  .rd-note{ font-size:.76rem; color:var(--muted); max-width:290px; }
+  .rd-error{ color:var(--down); font-size:.85rem; margin-top:.8rem; }
+  .rd-done{ text-align:center; padding:1rem 0 .4rem; }
+  .rd-done i{ font-size:2rem; color:var(--up); margin-bottom:.8rem; }
+  .rd-done p{ color:var(--muted); margin:.5rem 0 1.2rem; }
+  .btn[disabled]{ opacity:.6; cursor:wait; }
+
   /* Toast */
   #toast{
     position:fixed; left:50%; bottom:1.6rem; transform:translate(-50%, calc(100% + 2rem)); z-index:200;
@@ -577,7 +608,7 @@
         <p class="hero-typed" aria-label="DCF models, comparable company analysis, FEMA valuations, PE and VC portfolio valuations">&gt; building <span class="typed" id="typed"></span><span class="caret">▍</span></p>
         <p class="hero-desc">I turn engineering rigor into deal-ready numbers — DCF, comparable company &amp; transaction analysis, and cross-border compliance valuations across aerospace, clean energy, sport, and private equity portfolios.</p>
         <div class="hero-ctas">
-          <a href="resume.pdf" download class="btn solid">Download Résumé</a>
+          <button type="button" class="btn solid" data-open-resume>Request Résumé</button>
           <a href="https://in.linkedin.com/in/prakhar-jain-842423119" target="_blank" class="btn ghost">LinkedIn Profile</a>
         </div>
       </div>
@@ -945,7 +976,7 @@
     <div class="contact-inner reveal">
       <div class="contact-links">
         <div><a href="mailto:prakharjain.oist@gmail.com"><i class="fa-solid fa-envelope"></i>&nbsp; prakharjain.oist@gmail.com</a><button class="copy-btn" id="copy-email" aria-label="Copy email address"><i class="fa-regular fa-copy"></i></button></div>
-        
+        <a href="#" data-open-resume><i class="fa-solid fa-file-lines"></i>&nbsp; Request my résumé</a>
       </div>
       <div class="social-row">
         <a href="https://github.com/pra1608" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -962,6 +993,51 @@
   </div>
 </footer>
 <div id="toast" role="status" aria-live="polite"></div>
+
+<dialog id="resume-dialog" aria-labelledby="rd-title">
+  <div class="rd-inner">
+    <div class="rd-head">
+      <div>
+        <p class="eyebrow">Résumé on request</p>
+        <h3 id="rd-title">Request my résumé</h3>
+      </div>
+      <button type="button" class="rd-close" data-close-resume aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <form id="resume-form" novalidate>
+      <p class="rd-sub">I share my résumé personally. Tell me who you are and I'll email it to you once I've reviewed your request.</p>
+      <div class="rd-grid">
+        <div class="rd-field"><label for="rd-name">Full name</label><input id="rd-name" name="name" autocomplete="name" required maxlength="120"></div>
+        <div class="rd-field"><label for="rd-email">Work email</label><input id="rd-email" name="email" type="email" autocomplete="email" required maxlength="160"></div>
+        <div class="rd-field"><label for="rd-company">Company</label><input id="rd-company" name="company" autocomplete="organization" required maxlength="120"></div>
+        <div class="rd-field"><label for="rd-role">Your role</label><input id="rd-role" name="role" autocomplete="organization-title" maxlength="120"></div>
+        <div class="rd-field full"><label for="rd-purpose">Purpose</label>
+          <select id="rd-purpose" name="purpose" required>
+            <option value="">Select one</option>
+            <option>Hiring for a specific role</option>
+            <option>Recruiter / search firm</option>
+            <option>Networking</option>
+            <option>Speaking or collaboration</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="rd-field full"><label for="rd-linkedin">LinkedIn profile (optional)</label><input id="rd-linkedin" name="linkedin" type="url" placeholder="https://linkedin.com/in/…" maxlength="200"></div>
+        <div class="rd-field full"><label for="rd-msg">Message (optional)</label><textarea id="rd-msg" name="message" maxlength="1500" placeholder="Role, team, or anything else I should know"></textarea></div>
+      </div>
+      <div class="rd-honey" aria-hidden="true"><label for="rd-hp">Leave blank</label><input id="rd-hp" name="_honey" tabindex="-1" autocomplete="off"></div>
+      <p class="rd-error" id="rd-error" role="alert" hidden></p>
+      <div class="rd-foot">
+        <p class="rd-note">Your details are sent only to me by email and used only to respond to this request.</p>
+        <button type="submit" class="btn solid" id="rd-submit">Send request</button>
+      </div>
+    </form>
+    <div class="rd-done" id="rd-done" hidden>
+      <i class="fa-solid fa-circle-check"></i>
+      <h3>Request sent</h3>
+      <p>Thanks — I'll review it and reply to <b id="rd-done-email"></b>, usually within two working days.</p>
+      <button type="button" class="btn ghost" data-close-resume>Close</button>
+    </div>
+  </div>
+</dialog>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
@@ -1283,6 +1359,67 @@
   document.querySelectorAll('#dcf-inputs input').forEach(i => i.addEventListener('input', updateDcf));
   updateDcf();
 
+
+
+  // Résumé on request — submissions are emailed to me via FormSubmit; I reply with the résumé
+  (function resumeRequest(){
+    const dlg = document.getElementById('resume-dialog');
+    const form = document.getElementById('resume-form');
+    const err = document.getElementById('rd-error');
+    const submit = document.getElementById('rd-submit');
+    const ENDPOINT = 'https://formsubmit.co/ajax/prakharjain.oist@gmail.com';
+    function open(e){
+      if(e) e.preventDefault();
+      if(typeof dlg.showModal !== 'function'){ window.location.href = 'mailto:prakharjain.oist@gmail.com?subject=R%C3%A9sum%C3%A9%20request'; return; }
+      form.hidden = false; document.getElementById('rd-done').hidden = true; err.hidden = true;
+      dlg.showModal();
+      document.getElementById('rd-name').focus();
+    }
+    document.querySelectorAll('[data-open-resume]').forEach(b => b.addEventListener('click', open));
+    form.addEventListener('input', () => { err.hidden = true; });
+    dlg.querySelectorAll('[data-close-resume]').forEach(b => b.addEventListener('click', () => dlg.close()));
+    dlg.addEventListener('click', (e) => { if(e.target === dlg) dlg.close(); });
+    if(location.hash === '#resume') open();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      err.hidden = true;
+      if(!form.checkValidity()){
+        const bad = form.querySelector(':invalid');
+        err.textContent = 'Please check: ' + (bad.labels[0] ? bad.labels[0].textContent : 'the required fields') + '.';
+        err.hidden = false; bad.focus(); return;
+      }
+      const data = Object.fromEntries(new FormData(form));
+      if(data._honey) return;                       // bot filled the hidden field
+      delete data._honey;
+      const payload = Object.assign({}, data, {
+        _subject: 'Résumé request: ' + data.name + ' (' + data.company + ')',
+        _replyto: data.email,
+        _template: 'table',
+        _captcha: 'false',
+        page: location.href,
+        requested_at: new Date().toISOString()
+      });
+      submit.disabled = true; submit.textContent = 'Sending…';
+      fetch(ENDPOINT, {
+        method:'POST',
+        headers:{'Content-Type':'application/json', 'Accept':'application/json'},
+        body: JSON.stringify(payload)
+      })
+        .then(r => r.json().catch(() => ({})).then(j => ({ok: r.ok, j})))
+        .then(({ok, j}) => {
+          if(!ok || String(j.success) === 'false') throw new Error(j.message || 'failed');
+          document.getElementById('rd-done-email').textContent = data.email;
+          form.hidden = true; document.getElementById('rd-done').hidden = false;
+          form.reset();
+        })
+        .catch(() => {
+          err.innerHTML = 'Sorry, that didn’t go through. Please email <a href="mailto:prakharjain.oist@gmail.com?subject=R%C3%A9sum%C3%A9%20request" style="color:var(--brass)">prakharjain.oist@gmail.com</a> instead.';
+          err.hidden = false;
+        })
+        .finally(() => { submit.disabled = false; submit.textContent = 'Send request'; });
+    });
+  })();
 
   // Latest report critiques — blog/posts.json is generated by Jekyll from _posts/
   fetch('blog/posts.json', {cache:'no-cache'})
