@@ -13,3 +13,12 @@ The blog at `/blog/` is built by GitHub Pages (Jekyll) from Markdown files in `_
    Critiques" section and in the RSS feed (`/blog/feed.xml`) in a minute or two.
 
 Images: upload them to `images/blog/` and reference them as `![caption](/images/blog/file.png)`.
+
+## Updating the complex securities course
+
+The course page is `learn/complex-securities/index.html`. The tutor itself is the public skill at
+`_skills/complex-securities-tutor/SKILL.md`.
+
+Edit `SKILL.md` (on GitHub or locally) and commit to `main`. The **Package course skill** workflow rebuilds
+`learn/complex-securities/complex-securities-tutor.zip` and `course-prompt.txt` automatically.
+Locally you can run `python3 scripts/package-skill.py` instead.
