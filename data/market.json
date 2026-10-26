@@ -1,26 +1,26 @@
 {
-  "updated": "2026-10-23T14:54:58.721Z",
+  "updated": "2026-10-26T10:00:40.951Z",
   "items": {
     "nifty": {
       "label": "NIFTY 50",
-      "value": 22600,
-      "change": -87.65,
-      "changePct": -0.39,
-      "asOf": "2026-10-23T09:58:19.000Z"
+      "value": 22717.05,
+      "change": 117.05,
+      "changePct": 0.52,
+      "asOf": "2026-10-26T09:45:00.000Z"
     },
     "gsec": {
       "label": "IN 10Y G-Sec",
-      "value": 7.477,
-      "change": 0.016,
-      "changePct": -0.109,
-      "asOf": "2026-10-23T11:30:13.000Z"
+      "value": 7.482,
+      "change": 0.005,
+      "changePct": -0.034,
+      "asOf": "2026-10-26T10:00:14.000Z"
     },
     "usdinr": {
       "label": "USD/INR",
-      "value": 94.94,
-      "change": 0.1225,
-      "changePct": 0.1292,
-      "asOf": "2026-10-23T10:02:00.000Z"
+      "value": 95.18,
+      "change": 0.24,
+      "changePct": 0.2528,
+      "asOf": "2026-10-26T09:58:00.000Z"
     }
   }
 }
